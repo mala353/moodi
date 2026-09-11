@@ -1,304 +1,690 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#f6d8ff">
-<meta name="description" content="Moodi — Find your mood. Create your vibe.">
 <title>Moodi — Inspo & Edit</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
+*{box-sizing:border-box;margin:0;padding:0}
 body{
-  font-family:Arial,Helvetica,sans-serif;
-  min-height:100vh;
-  color:#292238;
-  background:
-    radial-gradient(circle at 10% 10%,#ffd9ec 0,transparent 30%),
-    radial-gradient(circle at 90% 10%,#d9d8ff 0,transparent 30%),
-    radial-gradient(circle at 50% 100%,#d7f5ff 0,transparent 35%),
-    #faf8ff;
-  transition:.3s;
+font-family:Arial,sans-serif;
+min-height:100vh;
+color:#292238;
+background:linear-gradient(135deg,#ffd8e9,#ddd8ff,#d5f4ff);
+padding-bottom:90px;
 }
-
 body.dark{
-  color:#f5f1ff;
-  background:
-    radial-gradient(circle at 10% 10%,#4c3152 0,transparent 30%),
-    radial-gradient(circle at 90% 10%,#34366a 0,transparent 30%),
-    #151321;
+color:#fff;
+background:linear-gradient(135deg,#302036,#25264b,#18343d);
 }
+button,input{font:inherit}
+button{border:0;cursor:pointer}
 
-button,
-input,
-textarea{
-  font:inherit;
-}
-
-button{
-  border:0;
-  cursor:pointer;
-}
-
-.app{
-  width:min(1100px,100%);
-  margin:auto;
-  padding:20px 18px 100px;
-}
-
-/* HEADER */
+.app{max-width:1000px;margin:auto;padding:18px}
 
 header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:22px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px
 }
 
 .logo{
-  display:flex;
-  align-items:center;
-  gap:9px;
-  font-size:25px;
-  font-weight:800;
+font-size:25px;
+font-weight:800;
+display:flex;
+align-items:center;
+gap:9px
 }
 
 .logo-icon{
-  width:42px;
-  height:42px;
-  display:grid;
-  place-items:center;
-  border-radius:15px;
-  background:linear-gradient(135deg,#ffb7d8,#c9b8ff,#aeeaff);
-  box-shadow:0 8px 25px #bda9df55;
+width:43px;height:43px;
+display:grid;place-items:center;
+border-radius:15px;
+background:linear-gradient(135deg,#ffb5d6,#c5b7ff,#a9eaff)
 }
 
-.header-actions{
-  display:flex;
-  gap:8px;
+.icon{
+width:43px;height:43px;
+border-radius:14px;
+background:#ffffff99
 }
 
-.icon-btn{
-  width:42px;
-  height:42px;
-  border-radius:14px;
-  background:#ffffff88;
-  backdrop-filter:blur(15px);
-  color:inherit;
-  font-size:18px;
-}
+.dark .icon{background:#ffffff20}
 
-.dark .icon-btn{
-  background:#ffffff12;
-}
-
-/* PAGES */
-
-.page{
-  display:none;
-  animation:fade .25s ease;
-}
-
-.page.active{
-  display:block;
-}
-
-@keyframes fade{
-  from{
-    opacity:0;
-    transform:translateY(8px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
-/* HERO */
+.page{display:none}
+.page.active{display:block}
 
 .hero{
-  position:relative;
-  overflow:hidden;
-  min-height:250px;
-  padding:30px;
-  border:1px solid #ffffffaa;
-  border-radius:30px;
-  background:
-    linear-gradient(135deg,#ffd7e9dd,#e2d8ffdd,#ccefffdd);
-  box-shadow:0 18px 50px #9b83c530;
+padding:30px;
+border-radius:30px;
+background:#ffffff65;
+border:1px solid #ffffff;
+backdrop-filter:blur(15px);
+box-shadow:0 15px 45px #8b70a633
 }
 
-.dark .hero{
-  background:linear-gradient(135deg,#472d48,#34335d,#273d4b);
-  border-color:#ffffff15;
-}
-
-.hero::before{
-  content:"";
-  position:absolute;
-  width:160px;
-  height:160px;
-  right:-30px;
-  top:-40px;
-  border-radius:50%;
-  background:#ffffff55;
-}
+.dark .hero{background:#ffffff12;border-color:#ffffff20}
 
 .hero h1{
-  position:relative;
-  font-size:clamp(32px,7vw,58px);
-  line-height:1;
-  max-width:600px;
-  margin-bottom:14px;
+font-size:clamp(38px,8vw,60px);
+line-height:1;
+margin-bottom:15px
 }
 
 .hero p{
-  position:relative;
-  font-size:16px;
-  opacity:.75;
-  margin-bottom:24px;
+opacity:.7;
+margin-bottom:22px
 }
 
-.hero-buttons{
-  position:relative;
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
+.primary,.secondary{
+padding:13px 18px;
+border-radius:15px;
+font-weight:bold
 }
 
 .primary{
-  padding:13px 19px;
-  border-radius:15px;
-  background:#292238;
-  color:white;
-  font-weight:700;
-  box-shadow:0 8px 20px #29223830;
+background:#292238;
+color:white
 }
 
 .dark .primary{
-  background:#f6efff;
-  color:#292238;
+background:white;
+color:#292238
 }
 
 .secondary{
-  padding:13px 19px;
-  border-radius:15px;
-  background:#ffffff80;
-  color:inherit;
-  font-weight:700;
-  backdrop-filter:blur(10px);
+background:#ffffff90;
+color:inherit
 }
 
-/* SECTION */
-
-.section{
-  margin-top:28px;
+.buttons{
+display:flex;
+gap:10px;
+flex-wrap:wrap
 }
+
+.section{margin-top:28px}
 
 .section-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:14px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:14px
 }
 
-.section-title h2{
-  font-size:22px;
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:14px
 }
 
-.see{
-  background:none;
-  color:#8166b5;
-  font-weight:700;
+.card{
+overflow:hidden;
+border-radius:22px;
+background:#ffffff75;
+border:1px solid #ffffffaa;
+backdrop-filter:blur(12px);
+position:relative
 }
 
-/* SEARCH */
+.dark .card{background:#ffffff10;border-color:#ffffff20}
 
-.search-box{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:14px 16px;
-  margin-bottom:16px;
-  border-radius:18px;
-  background:#ffffffaa;
-  border:1px solid #ffffff;
-  backdrop-filter:blur(15px);
+.art{
+height:160px;
+display:grid;
+place-items:center;
+font-size:58px
 }
 
-.dark .search-box{
-  background:#ffffff0d;
-  border-color:#ffffff12;
+.a1{background:linear-gradient(135deg,#ffd1e5,#ded4ff)}
+.a2{background:linear-gradient(135deg,#d4f1ff,#e4d7ff)}
+.a3{background:linear-gradient(135deg,#ffe4c5,#ffd3e5)}
+.a4{background:linear-gradient(135deg,#dfffd9,#d4e6ff)}
+.a5{background:linear-gradient(135deg,#e4d7ff,#ffd0e7)}
+.a6{background:linear-gradient(135deg,#d2f7ef,#d7e1ff)}
+
+.card-info{padding:13px}
+.card-info b{display:block;margin-bottom:5px}
+.card-info small{opacity:.6}
+
+.heart{
+position:absolute;
+right:9px;
+top:9px;
+width:38px;height:38px;
+border-radius:13px;
+background:#ffffffdd
 }
 
-.search-box input{
-  width:100%;
-  border:0;
-  outline:0;
-  background:none;
-  color:inherit;
-  font-size:16px;
+.search{
+width:100%;
+padding:15px;
+border-radius:17px;
+border:1px solid white;
+outline:none;
+background:#ffffff90;
+margin-bottom:15px;
+color:inherit
 }
 
-/* CATEGORIES */
+.dark .search{background:#ffffff12;border-color:#ffffff20}
 
-.categories{
-  display:flex;
-  gap:9px;
-  overflow-x:auto;
-  padding-bottom:5px;
-  scrollbar-width:none;
-}
-
-.categories::-webkit-scrollbar{
-  display:none;
+.chips{
+display:flex;
+gap:8px;
+overflow-x:auto;
+margin-bottom:18px
 }
 
 .chip{
-  white-space:nowrap;
-  padding:10px 15px;
-  border-radius:30px;
-  background:#ffffff99;
-  border:1px solid #ffffff;
-  color:inherit;
+white-space:nowrap;
+padding:10px 15px;
+border-radius:25px;
+background:#ffffff80;
+color:inherit
 }
 
 .chip.active{
-  background:#292238;
-  color:white;
+background:#292238;
+color:white
 }
 
 .dark .chip.active{
-  background:#f6efff;
-  color:#292238;
+background:white;
+color:#292238
 }
 
-/* GRID */
+.editor{
+display:grid;
+grid-template-columns:1fr;
+gap:18px
+}
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:14px;
+.preview{
+padding:25px;
+border-radius:27px;
+background:linear-gradient(135deg,#ffd2e5,#d9d1ff,#c9f0ff);
+display:grid;
+place-items:center
+}
+
+.canvas{
+width:min(330px,90%);
+aspect-ratio:4/5;
+border-radius:25px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:12px;
+background:linear-gradient(135deg,#f8d5e8,#ddd6ff);
+text-align:center;
+box-shadow:0 18px 40px #66557a40
+}
+
+.canvas .emoji{font-size:75px}
+.canvas .title{font-size:28px;font-weight:900}
+
+.controls{
+padding:20px;
+border-radius:25px;
+background:#ffffff85;
+border:1px solid white
+}
+
+.dark .controls{
+background:#ffffff10;
+border-color:#ffffff20
+}
+
+.controls label{
+display:block;
+font-size:13px;
+opacity:.65;
+margin-bottom:6px
+}
+
+.controls input{
+width:100%;
+padding:12px;
+border-radius:13px;
+border:1px solid white;
+background:#ffffff80;
+outline:none;
+margin-bottom:15px;
+color:inherit
+}
+
+.emoji-row{
+display:flex;
+flex-wrap:wrap;
+gap:7px;
+margin-bottom:18px
+}
+
+.emoji-btn{
+width:43px;
+height:43px;
+border-radius:13px;
+background:#ffffffaa;
+font-size:20px
+}
+
+.empty{
+text-align:center;
+padding:50px 20px;
+background:#ffffff70;
+border-radius:23px
+}
+
+.bottom{
+position:fixed;
+bottom:10px;
+left:50%;
+transform:translateX(-50%);
+width:calc(100% - 20px);
+max-width:650px;
+display:flex;
+justify-content:space-around;
+padding:8px;
+border-radius:22px;
+background:#ffffffd9;
+backdrop-filter:blur(20px);
+box-shadow:0 10px 35px #5b4b7225;
+z-index:10
+}
+
+.dark .bottom{background:#201d2ddd}
+
+.nav{
+flex:1;
+padding:8px 3px;
+border-radius:15px;
+background:none;
+color:inherit;
+font-size:11px;
+font-weight:bold
+}
+
+.nav span{
+display:block;
+font-size:20px;
+margin-bottom:2px
+}
+
+.nav.active{
+background:#292238;
+color:white
+}
+
+.dark .nav.active{
+background:white;
+color:#292238
+}
+
+.toast{
+position:fixed;
+bottom:90px;
+left:50%;
+transform:translateX(-50%);
+background:#292238;
+color:white;
+padding:12px 18px;
+border-radius:14px;
+display:none;
+z-index:20
 }
 
 @media(min-width:700px){
-  .grid{
-    grid-template-columns:repeat(4,1fr);
-  }
+.grid{grid-template-columns:repeat(3,1fr)}
+.editor{grid-template-columns:1.1fr .9fr}
 }
 
-/* CARD */
+@media(max-width:400px){
+.art{height:140px}
+.hero{padding:24px}
+}
+</style>
+</head>
 
-.card{
-  position:relative;
-  overflow:hidden;
-  min-height:245
+<body>
+
+<div class="app">
+
+<header>
+<div class="logo">
+<div class="logo-icon">✨</div>
+Moodi
+</div>
+
+<button class="icon" onclick="darkMode()">🌙</button>
+</header>
+
+
+<!-- HOME -->
+<section id="home" class="page active">
+
+<div class="hero">
+<h1>Find your mood.<br>Create your vibe.</h1>
+<p>Discover inspiration and turn your ideas into something yours.</p>
+
+<div class="buttons">
+<button class="primary" onclick="page('explore')">Explore ✨</button>
+<button class="secondary" onclick="page('create')">Create 🎨</button>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title">
+<h2>Trending inspo 🔥</h2>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<div class="art a1">🌸</div>
+<button class="heart" onclick="save('Dreamy Pastel')">🤍</button>
+<div class="card-info">
+<b>Dreamy Pastel</b>
+<small>Aesthetic</small>
+</div>
+</div>
+
+<div class="card">
+<div class="art a2">💻</div>
+<button class="heart" onclick="save('Minimal Website')">🤍</button>
+<div class="card-info">
+<b>Minimal Website</b>
+<small>Web</small>
+</div>
+</div>
+
+<div class="card">
+<div class="art a3">🛋️</div>
+<button class="heart" onclick="save('Cozy Room')">🤍</button>
+<div class="card-info">
+<b>Cozy Room</b>
+<small>Room</small>
+</div>
+</div>
+
+<div class="card">
+<div class="art a4">🎨</div>
+<button class="heart" onclick="save('Creative Art')">🤍</button>
+<div class="card-info">
+<b>Creative Art</b>
+<small>Art</small>
+</div>
+</div>
+
+<div class="card">
+<div class="art a5">👗</div>
+<button class="heart" onclick="save('Fashion Mood')">🤍</button>
+<div class="card-info">
+<b>Fashion Mood</b>
+<small>Fashion</small>
+</div>
+</div>
+
+<div class="card">
+<div class="art a6">📸</div>
+<button class="heart" onclick="save('Soft Edit')">🤍</button>
+<div class="card-info">
+<b>Soft Edit</b>
+<small>Edit</small>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+
+<!-- EXPLORE -->
+<section id="explore" class="page">
+
+<div class="section-title">
+<h2>Explore 🔎</h2>
+</div>
+
+<input class="search" placeholder="Search your mood...">
+
+<div class="chips">
+<button class="chip active">All</button>
+<button class="chip">🌸 Aesthetic</button>
+<button class="chip">🎨 Art</button>
+<button class="chip">👗 Fashion</button>
+<button class="chip">💻 Web</button>
+<button class="chip">📸 Edit</button>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<div class="art a1">🌷</div>
+<div class="card-info"><b>Soft Spring</b><small>Aesthetic</small></div>
+</div>
+
+<div class="card">
+<div class="art a2">🖥️</div>
+<div class="card-info"><b>Clean Web</b><small>Web</small></div>
+</div>
+
+<div class="card">
+<div class="art a3">☕</div>
+<div class="card-info"><b>Cozy Vibes</b><small>Room</small></div>
+</div>
+
+<div class="card">
+<div class="art a5">🎀</div>
+<div class="card-info"><b>Pink Mood</b><small>Fashion</small></div>
+</div>
+
+</div>
+</section>
+
+
+<!-- CREATE -->
+<section id="create" class="page">
+
+<div class="section-title">
+<h2>Create your vibe 🎨</h2>
+</div>
+
+<div class="editor">
+
+<div class="preview">
+
+<div class="canvas">
+<div class="emoji" id="emoji">🦋</div>
+<div class="title" id="title">Dream Big</div>
+<div>made with Moodi ✨</div>
+</div>
+
+</div>
+
+<div class="controls">
+
+<label>Title</label>
+<input id="titleInput" value="Dream Big" maxlength="25">
+
+<label>Choose your vibe</label>
+
+<div class="emoji-row">
+<button class="emoji-btn" onclick="emoji('🦋')">🦋</button>
+<button class="emoji-btn" onclick="emoji('🌸')">🌸</button>
+<button class="emoji-btn" onclick="emoji('🌙')">🌙</button>
+<button class="emoji-btn" onclick="emoji('☁️')">☁️</button>
+<button class="emoji-btn" onclick="emoji('🎀')">🎀</button>
+<button class="emoji-btn" onclick="emoji('✨')">✨</button>
+</div>
+
+<button class="primary" style="width:100%" onclick="createSave()">
+💾 Save creation
+</button>
+
+</div>
+</div>
+</section>
+
+
+<!-- SAVED -->
+<section id="saved" class="page">
+
+<div class="section-title">
+<h2>Saved 💾</h2>
+</div>
+
+<div class="empty">
+<div style="font-size:50px">💗</div>
+<h3>Your saved ideas</h3>
+<p style="opacity:.6;margin-top:8px">
+Ideas you love can live here.
+</p>
+</div>
+
+</section>
+
+
+<!-- CREATIONS -->
+<section id="creations" class="page">
+
+<div class="section-title">
+<h2>My Creations 🖼️</h2>
+</div>
+
+<div id="myCreation" class="empty">
+<div style="font-size:50px">🎨</div>
+<h3>Create something beautiful</h3>
+<p style="opacity:.6;margin-top:8px">
+Your creations will appear here.
+</p>
+</div>
+
+</section>
+
+</div>
+
+
+<!-- NAVIGATION -->
+
+<nav class="bottom">
+
+<button class="nav active" onclick="page('home',this)">
+<span>🏠</span>Home
+</button>
+
+<button class="nav" onclick="page('explore',this)">
+<span>🔎</span>Explore
+</button>
+
+<button class="nav" onclick="page('create',this)">
+<span>➕</span>Create
+</button>
+
+<button class="nav" onclick="page('saved',this)">
+<span>💾</span>Saved
+</button>
+
+<button class="nav" onclick="page('creations',this)">
+<span>🖼️</span>Creations
+</button>
+
+</nav>
+
+<div id="toast" class="toast"></div>
+
+
+<script>
+
+function page(id,button){
+
+document.querySelectorAll(".page")
+.forEach(x=>x.classList.remove("active"));
+
+document.getElementById(id)
+.classList.add("active");
+
+document.querySelectorAll(".nav")
+.forEach(x=>x.classList.remove("active"));
+
+if(button){
+button.classList.add("active");
+}
+
+window.scrollTo(0,0);
+}
+
+
+function darkMode(){
+
+document.body.classList.toggle("dark");
+
+}
+
+
+function emoji(x){
+
+document.getElementById("emoji").textContent=x;
+
+}
+
+
+document.getElementById("titleInput")
+.addEventListener("input",function(){
+
+document.getElementById("title").textContent=
+this.value || "Dream Big";
+
+});
+
+
+function createSave(){
+
+let title=
+document.getElementById("titleInput").value
+||"Dream Big";
+
+document.getElementById("myCreation").innerHTML=
+`
+<div style="font-size:70px">
+${document.getElementById("emoji").textContent}
+</div>
+<h3>${title}</h3>
+<p style="opacity:.6;margin-top:8px">
+Created with Moodi ✨
+</p>
+`;
+
+showToast("Creation saved ✨");
+
+}
+
+
+function save(name){
+
+showToast(name+" saved 💗");
+
+}
+
+
+function showToast(text){
+
+let box=document.getElementById("toast");
+
+box.textContent=text;
+box.style.display="block";
+
+setTimeout(function(){
+box.style.display="none";
+},1800);
+
+}
+
+</script>
+
+</body>
+</html>
