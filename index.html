@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#f7d8e8">
 <title>Moodi — Inspo & Edit</title>
 
@@ -10,15 +10,16 @@
 *{
   box-sizing:border-box;
   margin:0;
-  padding:0;
+  padding:0
 }
 
 :root{
+  --bg:#fff8fc;
   --text:#292331;
   --muted:#746d7b;
   --card:rgba(255,255,255,.72);
   --line:rgba(120,90,130,.14);
-  --shadow:0 12px 35px rgba(80,55,100,.10);
+  --shadow:0 12px 35px rgba(80,55,100,.10)
 }
 
 body{
@@ -32,42 +33,44 @@ body{
 }
 
 body.dark{
+  --bg:#17141c;
   --text:#f7f2fa;
   --muted:#bbb1c2;
   --card:rgba(37,32,45,.82);
-  --line:rgba(255,255,255,.10);
+  --line:rgba(255,255,255,.10)
 }
 
 button,input{
-  font:inherit;
+  font:inherit
 }
 
 button{
   border:0;
-  cursor:pointer;
+  cursor:pointer
 }
 
 .app{
   max-width:1050px;
   margin:auto;
-  padding:20px 18px 100px;
+  padding:20px 18px 100px
 }
 
 header{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  margin-bottom:20px;
+  gap:12px;
+  margin-bottom:20px
 }
 
 .logo{
   font-size:28px;
   font-weight:900;
-  letter-spacing:-1px;
+  letter-spacing:-1px
 }
 
 .logo span{
-  font-weight:500;
+  font-weight:500
 }
 
 .iconbtn{
@@ -76,26 +79,26 @@ header{
   border-radius:14px;
   background:var(--card);
   border:1px solid var(--line);
-  box-shadow:var(--shadow);
+  box-shadow:var(--shadow)
 }
 
 .page{
   display:none;
-  animation:fade .25s ease;
+  animation:fade .25s ease
 }
 
 .page.active{
-  display:block;
+  display:block
 }
 
 @keyframes fade{
   from{
     opacity:.2;
-    transform:translateY(5px);
+    transform:translateY(5px)
   }
   to{
     opacity:1;
-    transform:none;
+    transform:none
   }
 }
 
@@ -105,8 +108,8 @@ header{
   border-radius:28px;
   background:var(--card);
   box-shadow:var(--shadow);
-  position:relative;
   overflow:hidden;
+  position:relative
 }
 
 .hero:after{
@@ -115,7 +118,7 @@ header{
   right:28px;
   top:15px;
   font-size:80px;
-  opacity:.12;
+  opacity:.12
 }
 
 .kicker{
@@ -123,24 +126,24 @@ header{
   font-weight:800;
   color:#9c72a8;
   text-transform:uppercase;
-  letter-spacing:1px;
+  letter-spacing:1px
 }
 
 h1{
   font-size:clamp(34px,7vw,60px);
   line-height:.98;
   margin:8px 0 14px;
-  letter-spacing:-2px;
+  letter-spacing:-2px
 }
 
 h2{
   font-size:25px;
-  margin:22px 0 12px;
+  margin:22px 0 12px
 }
 
 p{
   color:var(--muted);
-  line-height:1.5;
+  line-height:1.5
 }
 
 .primary{
@@ -149,30 +152,30 @@ p{
   border-radius:15px;
   background:#292331;
   color:white;
-  font-weight:800;
+  font-weight:800
 }
 
 .dark .primary{
   background:#f5eaf8;
-  color:#241d29;
+  color:#241d29
 }
 
 .section-head{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-top:24px;
+  margin-top:24px
 }
 
 .section-head h2{
-  margin:0;
+  margin:0
 }
 
 .grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:14px;
-  margin-top:14px;
+  margin-top:14px
 }
 
 .card{
@@ -181,7 +184,7 @@ p{
   border-radius:22px;
   padding:14px;
   box-shadow:var(--shadow);
-  overflow:hidden;
+  overflow:hidden
 }
 
 .visual{
@@ -192,11 +195,18 @@ p{
   justify-content:center;
   font-size:58px;
   background:linear-gradient(135deg,#ffdced,#d9ccff,#c9ebff);
+  overflow:hidden
+}
+
+.visual img{
+  width:100%;
+  height:100%;
+  object-fit:cover
 }
 
 .card h3{
   font-size:17px;
-  margin:12px 0 5px;
+  margin:12px 0 5px
 }
 
 .tag{
@@ -205,14 +215,13 @@ p{
   padding:6px 9px;
   border-radius:20px;
   background:rgba(255,255,255,.55);
-  color:#775f7e;
-  margin-top:10px;
+  color:#775f7e
 }
 
 .actions{
   display:flex;
   gap:8px;
-  margin-top:12px;
+  margin-top:12px
 }
 
 .actions button{
@@ -220,18 +229,18 @@ p{
   padding:9px;
   border-radius:12px;
   background:rgba(255,255,255,.55);
-  border:1px solid var(--line);
+  border:1px solid var(--line)
 }
 
 .dark .actions button{
   background:rgba(255,255,255,.06);
-  color:var(--text);
+  color:var(--text)
 }
 
 .search{
   display:flex;
   gap:9px;
-  margin:15px 0;
+  margin:15px 0
 }
 
 .search input{
@@ -241,14 +250,14 @@ p{
   border:1px solid var(--line);
   background:var(--card);
   color:var(--text);
-  outline:none;
+  outline:none
 }
 
 .filters{
   display:flex;
   gap:8px;
   overflow:auto;
-  padding-bottom:5px;
+  padding-bottom:5px
 }
 
 .filter{
@@ -256,18 +265,17 @@ p{
   padding:9px 13px;
   border-radius:20px;
   background:var(--card);
-  border:1px solid var(--line);
-  color:var(--text);
+  border:1px solid var(--line)
 }
 
 .filter.active{
   background:#292331;
-  color:white;
+  color:white
 }
 
 .dark .filter.active{
   background:#f5eaf8;
-  color:#241d29;
+  color:#241d29
 }
 
 .editor{
@@ -276,11 +284,11 @@ p{
   border-radius:24px;
   background:var(--card);
   border:1px solid var(--line);
-  box-shadow:var(--shadow);
+  box-shadow:var(--shadow)
 }
 
 .canvas{
-  min-height:280px;
+  min-height:350px;
   border-radius:22px;
   padding:25px;
   display:flex;
@@ -289,23 +297,73 @@ p{
   justify-content:center;
   text-align:center;
   background:linear-gradient(135deg,#ffd8e9,#d8c8ff,#c4e8fa);
+  overflow:hidden;
+  position:relative
 }
 
 .canvas .emoji{
   font-size:75px;
+  position:relative;
+  z-index:2
 }
 
 .canvas .title{
   font-size:30px;
   font-weight:900;
   margin-top:10px;
+  position:relative;
+  z-index:2
+}
+
+.canvas p{
+  position:relative;
+  z-index:2
 }
 
 .controls{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
-  margin-top:14px;
+  margin-top:14px
+}
+
+.photo-tools{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:10px
+}
+
+.photo-tools button,
+.upload-label{
+  padding:9px 12px;
+  border:0;
+  border-radius:14px;
+  background:rgba(255,255,255,.7);
+  cursor:pointer;
+  font-weight:700
+}
+
+.photo-tools button:hover,
+.upload-label:hover{
+  transform:translateY(-1px)
+}
+
+#photoInput{
+  display:none
+}
+
+.photo-preview{
+  width:100%;
+  max-height:300px;
+  object-fit:cover;
+  border-radius:20px;
+  display:none;
+  margin-bottom:12px
+}
+
+.filter-active{
+  outline:2px solid rgba(120,80,220,.45)
 }
 
 .controls input{
@@ -313,38 +371,36 @@ p{
   padding:12px;
   border-radius:13px;
   border:1px solid var(--line);
-  background:var(--card);
-  color:var(--text);
-  outline:none;
+  background:var(--bg);
+  color:var(--text)
 }
 
 .emojis{
   display:flex;
   gap:8px;
   flex-wrap:wrap;
-  margin-top:12px;
+  margin-top:12px
 }
 
 .emojis button{
   font-size:25px;
   padding:7px;
   border-radius:12px;
-  background:var(--card);
-  border:1px solid var(--line);
+  background:var(--bg);
+  border:1px solid var(--line)
 }
 
 .challenge{
   margin-top:20px;
   padding:18px;
   border-radius:20px;
-  background:linear-gradient(135deg,#f6d7e8,#d9d0fa);
+  background:linear-gradient(135deg,#f6d7e8,#d9d0fa)
 }
 
 .empty{
   text-align:center;
   padding:40px 15px;
-  color:var(--muted);
-  grid-column:1/-1;
+  color:var(--muted)
 }
 
 .bottom{
@@ -361,11 +417,11 @@ p{
   background:rgba(255,255,255,.78);
   backdrop-filter:blur(18px);
   border:1px solid var(--line);
-  box-shadow:0 15px 40px rgba(60,40,80,.18);
+  box-shadow:0 15px 40px rgba(60,40,80,.18)
 }
 
 .dark .bottom{
-  background:rgba(30,26,36,.88);
+  background:rgba(30,26,36,.88)
 }
 
 .nav{
@@ -373,18 +429,18 @@ p{
   border-radius:15px;
   background:transparent;
   color:var(--muted);
-  font-size:11px;
+  font-size:11px
 }
 
 .nav strong{
   display:block;
   font-size:19px;
-  margin-bottom:2px;
+  margin-bottom:2px
 }
 
 .nav.active{
   background:rgba(220,190,235,.35);
-  color:var(--text);
+  color:var(--text)
 }
 
 .toast{
@@ -398,48 +454,48 @@ p{
   background:#292331;
   color:#fff;
   display:none;
-  box-shadow:var(--shadow);
+  box-shadow:var(--shadow)
 }
 
 @media(max-width:760px){
   .grid{
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(2,1fr)
   }
 
   .visual{
-    height:130px;
+    height:130px
   }
 }
 
 @media(max-width:480px){
   .app{
-    padding:15px 12px 100px;
+    padding:15px 12px 100px
   }
 
   .grid{
     grid-template-columns:1fr 1fr;
-    gap:10px;
+    gap:10px
   }
 
   .visual{
     height:120px;
-    font-size:48px;
+    font-size:48px
   }
 
   .hero{
-    padding:22px;
+    padding:22px
   }
 
   .card{
-    padding:10px;
+    padding:10px
   }
 
   .card h3{
-    font-size:15px;
+    font-size:15px
   }
 
   .controls{
-    grid-template-columns:1fr;
+    grid-template-columns:1fr
   }
 }
 </style>
@@ -451,9 +507,8 @@ p{
 
 <header>
   <div class="logo">moodi<span> ✦</span></div>
-  <button class="iconbtn" onclick="toggleDark()">☾</button>
+  <button class="iconbtn" onclick="toggleDark()" aria-label="Toggle dark mode">☾</button>
 </header>
-
 
 <!-- HOME -->
 <section id="home" class="page active">
@@ -478,7 +533,6 @@ p{
 
   <div class="section-head">
     <h2>Trending inspo</h2>
-
     <button class="filter" onclick="surprise()">
       Surprise me ✨
     </button>
@@ -487,9 +541,7 @@ p{
   <div id="homeGrid" class="grid"></div>
 
   <div class="challenge">
-
     <b>🔥 Daily Mood Challenge</b>
-
     <p id="challengeText">
       Create something inspired by today's mood.
     </p>
@@ -497,7 +549,6 @@ p{
     <button class="primary" onclick="showPage('create')">
       Try it
     </button>
-
   </div>
 
 </section>
@@ -513,14 +564,11 @@ p{
   </p>
 
   <div class="search">
-
     <input
       id="search"
-      type="text"
       placeholder="Search inspo..."
       oninput="renderExplore()"
     >
-
   </div>
 
   <div id="filters" class="filters"></div>
@@ -536,12 +584,18 @@ p{
   <h1>Create 🎨</h1>
 
   <p>
-    Remix an idea or make your own mood card.
+    Upload a photo, add your mood, and make it yours.
   </p>
 
   <div class="editor">
 
-    <div class="canvas">
+    <div class="canvas" id="canvas">
+
+      <img
+        id="photoPreview"
+        class="photo-preview"
+        alt="Your uploaded photo"
+      >
 
       <div class="emoji" id="previewEmoji">
         🦋
@@ -554,6 +608,43 @@ p{
       <p id="previewSub">
         Find your vibe ✦
       </p>
+
+    </div>
+
+
+    <label class="upload-label" for="photoInput">
+      📸 Upload photo
+    </label>
+
+    <input
+      id="photoInput"
+      type="file"
+      accept="image/*"
+      onchange="loadPhoto(event)"
+    >
+
+
+    <div class="photo-tools">
+
+      <button onclick="setFilter('none',this)">
+        Normal
+      </button>
+
+      <button onclick="setFilter('soft',this)">
+        Soft ✨
+      </button>
+
+      <button onclick="setFilter('mono',this)">
+        B&W
+      </button>
+
+      <button onclick="setFilter('warm',this)">
+        Warm ☀️
+      </button>
+
+      <button onclick="setFilter('cool',this)">
+        Cool 🌙
+      </button>
 
     </div>
 
@@ -597,6 +688,10 @@ p{
       Save creation 💗
     </button>
 
+    <button class="primary" onclick="downloadCreation()">
+      Download 📥
+    </button>
+
   </div>
 
 </section>
@@ -632,7 +727,7 @@ p{
 </div>
 
 
-<!-- BOTTOM NAV -->
+<!-- NAVIGATION -->
 <nav class="bottom">
 
   <button
@@ -735,7 +830,7 @@ const ideas = [
 ];
 
 
-const categories = [
+const cats = [
   "All",
   "Aesthetic",
   "Art",
@@ -747,29 +842,51 @@ const categories = [
 ];
 
 
-let currentCategory = "All";
+let currentCat = "All";
 
-let saved = JSON.parse(
-  localStorage.getItem("moodiSaved") || "[]"
-);
+let saved =
+  JSON.parse(localStorage.getItem("moodiSaved") || "[]");
 
-let creations = JSON.parse(
-  localStorage.getItem("moodiCreations") || "[]"
-);
+let creations =
+  JSON.parse(localStorage.getItem("moodiCreations") || "[]");
 
 let selectedEmoji = "🦋";
+
+let photoData = "";
+
+let currentFilter = "none";
+
+
+function esc(s){
+
+  return String(s).replace(
+    /[&<>"']/g,
+
+    function(m){
+
+      return {
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#039;"
+      }[m];
+
+    }
+  );
+
+}
 
 
 function card(item,index){
 
   const title = item[0];
-  const category = item[1];
+  const cat = item[1];
   const emoji = item[2];
 
   const isSaved = saved.includes(index);
 
   return `
-
     <article class="card">
 
       <div class="visual">
@@ -777,15 +894,15 @@ function card(item,index){
       </div>
 
       <span class="tag">
-        ${category}
+        ${cat}
       </span>
 
       <h3>
-        ${title}
+        ${esc(title)}
       </h3>
 
       <p>
-        Fresh ${category.toLowerCase()}
+        Fresh ${cat.toLowerCase()}
         inspiration for your next vibe.
       </p>
 
@@ -802,122 +919,106 @@ function card(item,index){
       </div>
 
     </article>
-
   `;
+
 }
 
 
 function renderHome(){
 
-  const grid = document.getElementById("homeGrid");
-
-  grid.innerHTML = ideas
-    .slice(0,6)
-    .map((item,index)=>card(item,index))
-    .join("");
+  document.getElementById("homeGrid").innerHTML =
+    ideas
+      .slice(0,6)
+      .map((x,i)=>card(x,i))
+      .join("");
 
 }
 
 
 function renderFilters(){
 
-  const box = document.getElementById("filters");
-
-  box.innerHTML = categories
-    .map(category => `
+  document.getElementById("filters").innerHTML =
+    cats.map(c=>`
 
       <button
-        class="filter ${category===currentCategory ? "active" : ""}"
-        onclick="setCategory('${category}')"
+        class="filter ${c===currentCat?"active":""}"
+        onclick="setCat('${c}')"
       >
-        ${category}
+        ${c}
       </button>
 
-    `)
-    .join("");
+    `).join("");
 
 }
 
 
 function renderExplore(){
 
-  const searchBox = document.getElementById("search");
+  const input =
+    document.getElementById("search");
 
-  const query =
-    (searchBox.value || "").toLowerCase();
+  const q =
+    (input.value || "").toLowerCase();
 
-  const results = ideas
-    .map((item,index)=>({item,index}))
-    .filter(obj => {
+  const list =
+    ideas
+      .map((x,i)=>({x,i}))
+      .filter(o=>
 
-      const matchesCategory =
-        currentCategory === "All" ||
-        obj.item[1] === currentCategory;
+        (
+          currentCat === "All" ||
+          o.x[1] === currentCat
+        )
 
-      const matchesSearch =
-        !query ||
-        obj.item[0].toLowerCase().includes(query) ||
-        obj.item[1].toLowerCase().includes(query);
+        &&
 
-      return matchesCategory && matchesSearch;
+        (
+          !q ||
+          o.x[0].toLowerCase().includes(q) ||
+          o.x[1].toLowerCase().includes(q)
+        )
 
-    });
-
-
-  const grid =
-    document.getElementById("exploreGrid");
-
-
-  if(results.length === 0){
-
-    grid.innerHTML = `
-
-      <div class="empty">
-
-        No inspo found 💭
-        <br>
-        Try another search.
-
-      </div>
-
-    `;
-
-    return;
-  }
+      );
 
 
-  grid.innerHTML =
-    results
-      .map(obj=>card(obj.item,obj.index))
-      .join("");
+  document.getElementById("exploreGrid").innerHTML =
+
+    list.length
+
+      ? list.map(o=>card(o.x,o.i)).join("")
+
+      : `
+        <div class="empty">
+          No inspo found 💭
+          <br>
+          Try another search.
+        </div>
+      `;
 
 }
 
 
-function setCategory(category){
+function setCat(cat){
 
-  currentCategory = category;
+  currentCat = cat;
 
   renderFilters();
+
   renderExplore();
 
 }
 
 
-function toggleSave(index){
+function toggleSave(i){
 
-  if(saved.includes(index)){
+  if(saved.includes(i)){
 
     saved =
-      saved.filter(item => item !== index);
-
-    toast("Removed from saved");
+      saved.filter(x=>x!==i);
 
   }else{
 
-    saved.push(index);
-
-    toast("Saved to your moodboard 💗");
+    saved.push(i);
 
   }
 
@@ -929,69 +1030,60 @@ function toggleSave(index){
 
 
   renderHome();
+
   renderExplore();
+
   renderSaved();
+
+
+  toast(
+    saved.includes(i)
+      ? "Saved to your moodboard 💗"
+      : "Removed from saved"
+  );
 
 }
 
 
 function renderSaved(){
 
-  const grid =
-    document.getElementById("savedGrid");
-
-
   const list =
     saved
-      .map(index=>({
-        item:ideas[index],
-        index:index
-      }))
-      .filter(obj=>obj.item);
+      .map(i=>({x:ideas[i],i}))
+      .filter(o=>o.x);
 
 
-  if(list.length === 0){
+  document.getElementById("savedGrid").innerHTML =
 
-    grid.innerHTML = `
+    list.length
 
-      <div class="empty">
+      ? list.map(o=>card(o.x,o.i)).join("")
 
-        Nothing saved yet 💗
-        <br>
-        Tap Save on an idea you love.
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  grid.innerHTML =
-    list
-      .map(obj=>card(obj.item,obj.index))
-      .join("");
+      : `
+        <div class="empty">
+          Nothing saved yet 💗
+          <br>
+          Tap Save on an idea you love.
+        </div>
+      `;
 
 }
 
 
-function remix(index){
+function remix(i){
 
-  const item = ideas[index];
+  const x = ideas[i];
 
-  selectedEmoji = item[2];
+  selectedEmoji = x[2];
 
   document.getElementById("previewEmoji")
-    .textContent = item[2];
+    .textContent = x[2];
 
   document.getElementById("titleInput")
-    .value = item[0];
+    .value = x[0];
 
   document.getElementById("subInput")
     .value = "Remixed on Moodi ✦";
-
 
   updatePreview();
 
@@ -1002,12 +1094,12 @@ function remix(index){
 }
 
 
-function setEmoji(emoji){
+function setEmoji(e){
 
-  selectedEmoji = emoji;
+  selectedEmoji = e;
 
   document.getElementById("previewEmoji")
-    .textContent = emoji;
+    .textContent = e;
 
 }
 
@@ -1017,18 +1109,131 @@ function updatePreview(){
   const title =
     document.getElementById("titleInput").value;
 
-  const subtitle =
+  const sub =
     document.getElementById("subInput").value;
 
 
   document.getElementById("previewTitle")
     .textContent =
-      title || "Untitled";
+    title || "Untitled";
 
 
   document.getElementById("previewSub")
     .textContent =
-      subtitle || "Your vibe ✦";
+    sub || "Your vibe ✦";
+
+}
+
+
+function loadPhoto(event){
+
+  const file =
+    event.target.files[0];
+
+  if(!file) return;
+
+
+  if(!file.type.startsWith("image/")){
+
+    toast("Please choose an image 📸");
+
+    return;
+
+  }
+
+
+  const reader =
+    new FileReader();
+
+
+  reader.onload = function(e){
+
+    photoData =
+      e.target.result;
+
+
+    const img =
+      document.getElementById("photoPreview");
+
+
+    img.src =
+      photoData;
+
+
+    img.style.display =
+      "block";
+
+
+    applyFilter();
+
+
+    toast("Photo added ✨");
+
+  };
+
+
+  reader.readAsDataURL(file);
+
+}
+
+
+function setFilter(filter,btn){
+
+  currentFilter =
+    filter;
+
+
+  document
+    .querySelectorAll(".photo-tools button")
+    .forEach(function(b){
+
+      b.classList.remove("filter-active");
+
+    });
+
+
+  if(btn){
+
+    btn.classList.add("filter-active");
+
+  }
+
+
+  applyFilter();
+
+}
+
+
+function applyFilter(){
+
+  const img =
+    document.getElementById("photoPreview");
+
+  if(!img) return;
+
+
+  const filters = {
+
+    none:
+      "none",
+
+    soft:
+      "brightness(1.08) saturate(.85) contrast(.95)",
+
+    mono:
+      "grayscale(1)",
+
+    warm:
+      "sepia(.18) saturate(1.3) contrast(1.03)",
+
+    cool:
+      "saturate(.85) hue-rotate(12deg) brightness(1.03)"
+
+  };
+
+
+  img.style.filter =
+    filters[currentFilter] || "none";
 
 }
 
@@ -1036,36 +1241,63 @@ function updatePreview(){
 function saveCreation(){
 
   const title =
-    document.getElementById("titleInput")
-      .value.trim() || "Untitled";
+    document
+      .getElementById("titleInput")
+      .value
+      .trim()
+    || "Untitled";
 
 
-  const subtitle =
-    document.getElementById("subInput")
-      .value.trim() || "My Mood ✦";
+  const sub =
+    document
+      .getElementById("subInput")
+      .value
+      .trim()
+    || "My Mood ✦";
 
 
-  creations.unshift({
+  const creation = {
 
     title:title,
 
-    sub:subtitle,
+    sub:sub,
 
     emoji:selectedEmoji,
 
+    photo:photoData,
+
+    filter:currentFilter,
+
     date:new Date().toLocaleDateString()
 
-  });
+  };
+
+
+  creations.unshift(creation);
 
 
   creations =
     creations.slice(0,30);
 
 
-  localStorage.setItem(
-    "moodiCreations",
-    JSON.stringify(creations)
-  );
+  try{
+
+    localStorage.setItem(
+      "moodiCreations",
+      JSON.stringify(creations)
+    );
+
+  }catch(error){
+
+    toast(
+      "Photo is too large to save on this device."
+    );
+
+    creations.shift();
+
+    return;
+
+  }
 
 
   renderCreations();
@@ -1083,18 +1315,14 @@ function renderCreations(){
     document.getElementById("creationGrid");
 
 
-  if(creations.length === 0){
+  if(!creations.length){
 
     grid.innerHTML = `
-
       <div class="empty">
-
         No creations yet ✨
         <br>
         Make your first mood card.
-
       </div>
-
     `;
 
     return;
@@ -1102,51 +1330,97 @@ function renderCreations(){
   }
 
 
-  grid.innerHTML = creations
-    .map((creation,index)=>`
+  grid.innerHTML =
+    creations.map(function(c,i){
 
-      <article class="card">
+      let filter = "none";
 
-        <div class="visual">
-          ${creation.emoji}
-        </div>
 
-        <h3>
-          ${creation.title}
-        </h3>
+      if(c.filter === "mono")
+        filter = "grayscale(1)";
 
-        <p>
-          ${creation.sub}
-        </p>
+      if(c.filter === "warm")
+        filter = "sepia(.18) saturate(1.3)";
 
-        <div class="actions">
+      if(c.filter === "cool")
+        filter = "saturate(.85) hue-rotate(12deg)";
 
-          <button onclick="shareCreation(${index})">
-            ↗ Share
-          </button>
+      if(c.filter === "soft")
+        filter = "brightness(1.08) saturate(.85)";
 
-          <button onclick="deleteCreation(${index})">
-            Delete
-          </button>
 
-        </div>
+      return `
 
-      </article>
+        <article class="card">
 
-    `)
-    .join("");
+          <div class="visual">
+
+            ${
+              c.photo
+
+              ?
+
+              `
+                <img
+                  src="${c.photo}"
+                  style="
+                    width:100%;
+                    height:100%;
+                    object-fit:cover;
+                    filter:${filter}
+                  "
+                  alt="Moodi creation"
+                >
+              `
+
+              :
+
+              esc(c.emoji)
+
+            }
+
+          </div>
+
+          <h3>
+            ${esc(c.title)}
+          </h3>
+
+          <p>
+            ${esc(c.sub)}
+          </p>
+
+          <div class="actions">
+
+            <button
+              onclick="shareCreation(${i})"
+            >
+              ↗ Share
+            </button>
+
+            <button
+              onclick="deleteCreation(${i})"
+            >
+              Delete
+            </button>
+
+          </div>
+
+        </article>
+
+      `;
+
+    }).join("");
 
 }
 
 
-function deleteCreation(index){
+function deleteCreation(i){
 
-  if(!confirm("Delete this creation?")){
+  if(!confirm("Delete this creation?"))
     return;
-  }
 
 
-  creations.splice(index,1);
+  creations.splice(i,1);
 
 
   localStorage.setItem(
@@ -1162,16 +1436,252 @@ function deleteCreation(index){
 }
 
 
-async function shareCreation(index){
+function downloadCreation(){
 
-  const creation =
-    creations[index];
+  const canvas =
+    document.createElement("canvas");
+
+
+  canvas.width = 1080;
+
+  canvas.height = 1080;
+
+
+  const ctx =
+    canvas.getContext("2d");
+
+
+  const gradient =
+    ctx.createLinearGradient(
+      0,
+      0,
+      1080,
+      1080
+    );
+
+
+  gradient.addColorStop(
+    0,
+    "#ffd8ec"
+  );
+
+  gradient.addColorStop(
+    .5,
+    "#d9d4ff"
+  );
+
+  gradient.addColorStop(
+    1,
+    "#ccecff"
+  );
+
+
+  ctx.fillStyle =
+    gradient;
+
+  ctx.fillRect(
+    0,
+    0,
+    1080,
+    1080
+  );
+
+
+  function finish(){
+
+    ctx.fillStyle =
+      "rgba(255,255,255,.82)";
+
+
+    ctx.beginPath();
+
+    ctx.roundRect(
+      70,
+      70,
+      940,
+      940,
+      50
+    );
+
+    ctx.fill();
+
+
+    ctx.textAlign =
+      "center";
+
+
+    ctx.fillStyle =
+      "#3d3558";
+
+
+    ctx.font =
+      "90px sans-serif";
+
+
+    ctx.fillText(
+      selectedEmoji,
+      540,
+      280
+    );
+
+
+    const title =
+      document
+        .getElementById("titleInput")
+        .value
+        .trim()
+      || "Untitled";
+
+
+    const sub =
+      document
+        .getElementById("subInput")
+        .value
+        .trim()
+      || "Your vibe ✦";
+
+
+    ctx.font =
+      "bold 68px Arial";
+
+
+    ctx.fillText(
+      title.slice(0,22),
+      540,
+      520
+    );
+
+
+    ctx.font =
+      "36px Arial";
+
+
+    ctx.fillText(
+      sub.slice(0,35),
+      540,
+      590
+    );
+
+
+    ctx.font =
+      "28px Arial";
+
+
+    ctx.fillText(
+      "Made with Moodi",
+      540,
+      930
+    );
+
+
+    try{
+
+      const link =
+        document.createElement("a");
+
+      link.download =
+        "moodi-creation.png";
+
+      link.href =
+        canvas.toDataURL("image/png");
+
+      document.body.appendChild(link);
+
+      link.click();
+
+      link.remove();
+
+      toast("Downloaded ✨");
+
+    }catch(error){
+
+      toast(
+        "Download failed. Try again."
+      );
+
+    }
+
+  }
+
+
+  if(photoData){
+
+    const img =
+      new Image();
+
+
+    img.onload = function(){
+
+      ctx.save();
+
+
+      let filter = "none";
+
+
+      if(currentFilter === "mono")
+        filter = "grayscale(1)";
+
+      if(currentFilter === "warm")
+        filter = "sepia(.18) saturate(1.3)";
+
+      if(currentFilter === "cool")
+        filter = "saturate(.85) hue-rotate(12deg)";
+
+      if(currentFilter === "soft")
+        filter = "brightness(1.08) saturate(.85)";
+
+
+      ctx.filter =
+        filter;
+
+
+      ctx.drawImage(
+        img,
+        90,
+        90,
+        900,
+        600
+      );
+
+
+      ctx.restore();
+
+
+      finish();
+
+    };
+
+
+    img.onerror =
+      function(){
+
+        toast(
+          "Could not load the photo."
+        );
+
+      };
+
+
+    img.src =
+      photoData;
+
+  }else{
+
+    finish();
+
+  }
+
+}
+
+
+async function shareCreation(i){
+
+  const c =
+    creations[i];
 
 
   const text =
-`${creation.emoji} ${creation.title}
-${creation.sub}
-Made with Moodi`;
+    `${c.emoji} ${c.title}\n${c.sub}\nMade with Moodi`;
 
 
   try{
@@ -1186,6 +1696,7 @@ Made with Moodi`;
 
       });
 
+
       toast("Shared ✨");
 
     }else{
@@ -1198,8 +1709,6 @@ Made with Moodi`;
 
   }catch(error){
 
-    // User cancelled sharing.
-
   }
 
 }
@@ -1207,20 +1716,25 @@ Made with Moodi`;
 
 function surprise(){
 
-  const index =
-    Math.floor(Math.random()*ideas.length);
+  const i =
+    Math.floor(
+      Math.random() * ideas.length
+    );
 
-  remix(index);
+
+  remix(i);
 
 }
 
 
-function showPage(id,button){
+function showPage(id,btn){
 
   document
     .querySelectorAll(".page")
-    .forEach(page=>{
-      page.classList.remove("active");
+    .forEach(function(p){
+
+      p.classList.remove("active");
+
     });
 
 
@@ -1228,28 +1742,30 @@ function showPage(id,button){
     document.getElementById(id);
 
 
-  if(page){
-    page.classList.add("active");
-  }
+  if(!page) return;
+
+
+  page.classList.add("active");
 
 
   document
     .querySelectorAll(".nav")
-    .forEach(nav=>{
-      nav.classList.remove("active");
+    .forEach(function(n){
+
+      n.classList.remove("active");
+
     });
 
 
   const nav =
-    button ||
+    btn ||
     document.querySelector(
       `.nav[data-page="${id}"]`
     );
 
 
-  if(nav){
+  if(nav)
     nav.classList.add("active");
-  }
 
 
   window.scrollTo({
@@ -1258,22 +1774,21 @@ function showPage(id,button){
   });
 
 
-  if(id==="explore"){
+  if(id === "explore"){
 
     renderFilters();
+
     renderExplore();
 
   }
 
 
-  if(id==="saved"){
+  if(id === "saved")
     renderSaved();
-  }
 
 
-  if(id==="creations"){
+  if(id === "creations")
     renderCreations();
-  }
 
 }
 
@@ -1293,29 +1808,37 @@ function toggleDark(){
 }
 
 
-function toast(message){
+function toast(msg){
 
-  const box =
+  const t =
     document.getElementById("toast");
 
 
-  box.textContent = message;
+  t.textContent =
+    msg;
 
-  box.style.display = "block";
+
+  t.style.display =
+    "block";
 
 
-  clearTimeout(window.toastTimer);
+  clearTimeout(
+    window.toastTimer
+  );
 
 
   window.toastTimer =
-    setTimeout(()=>{
-      box.style.display = "none";
+    setTimeout(function(){
+
+      t.style.display =
+        "none";
+
     },1800);
 
 }
 
 
-/* Start Moodi */
+/* Load saved settings */
 
 if(
   localStorage.getItem("moodiDark") === "1"
@@ -1326,13 +1849,19 @@ if(
 }
 
 
+/* Start Moodi */
+
 renderHome();
+
 renderFilters();
+
 renderExplore();
+
 renderSaved();
+
 renderCreations();
 
 </script>
 
 </body>
-</html>
+  </html>
