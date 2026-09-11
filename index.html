@@ -1,1867 +1,609 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#f7d8e8">
-<title>Moodi — Inspo & Edit</title>
-
-<style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0
-}
-
-:root{
-  --bg:#fff8fc;
-  --text:#292331;
-  --muted:#746d7b;
-  --card:rgba(255,255,255,.72);
-  --line:rgba(120,90,130,.14);
-  --shadow:0 12px 35px rgba(80,55,100,.10)
-}
-
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  color:var(--text);
-  min-height:100vh;
-  background:
-    radial-gradient(circle at 10% 0%,#f7d7ea 0,transparent 32%),
-    radial-gradient(circle at 90% 10%,#d7c9fa 0,transparent 30%),
-    linear-gradient(135deg,#fff8fc,#f2f7ff);
-}
-
-body.dark{
-  --bg:#17141c;
-  --text:#f7f2fa;
-  --muted:#bbb1c2;
-  --card:rgba(37,32,45,.82);
-  --line:rgba(255,255,255,.10)
-}
-
-button,input{
-  font:inherit
-}
-
-button{
-  border:0;
-  cursor:pointer
-}
-
-.app{
-  max-width:1050px;
-  margin:auto;
-  padding:20px 18px 100px
-}
-
-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  margin-bottom:20px
-}
-
-.logo{
-  font-size:28px;
-  font-weight:900;
-  letter-spacing:-1px
-}
-
-.logo span{
-  font-weight:500
-}
-
-.iconbtn{
-  width:42px;
-  height:42px;
-  border-radius:14px;
-  background:var(--card);
-  border:1px solid var(--line);
-  box-shadow:var(--shadow)
-}
-
-.page{
-  display:none;
-  animation:fade .25s ease
-}
-
-.page.active{
-  display:block
-}
-
-@keyframes fade{
-  from{
-    opacity:.2;
-    transform:translateY(5px)
-  }
-  to{
-    opacity:1;
-    transform:none
-  }
-}
-
-.hero{
-  padding:28px;
-  border:1px solid var(--line);
-  border-radius:28px;
-  background:var(--card);
-  box-shadow:var(--shadow);
-  overflow:hidden;
-  position:relative
-}
-
-.hero:after{
-  content:"✦";
-  position:absolute;
-  right:28px;
-  top:15px;
-  font-size:80px;
-  opacity:.12
-}
-
-.kicker{
-  font-size:13px;
-  font-weight:800;
-  color:#9c72a8;
-  text-transform:uppercase;
-  letter-spacing:1px
-}
-
-h1{
-  font-size:clamp(34px,7vw,60px);
-  line-height:.98;
-  margin:8px 0 14px;
-  letter-spacing:-2px
-}
-
-h2{
-  font-size:25px;
-  margin:22px 0 12px
-}
-
-p{
-  color:var(--muted);
-  line-height:1.5
-}
-
-.primary{
-  margin-top:20px;
-  padding:13px 18px;
-  border-radius:15px;
-  background:#292331;
-  color:white;
-  font-weight:800
-}
-
-.dark .primary{
-  background:#f5eaf8;
-  color:#241d29
-}
-
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-top:24px
-}
-
-.section-head h2{
-  margin:0
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px;
-  margin-top:14px
-}
-
-.card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:22px;
-  padding:14px;
-  box-shadow:var(--shadow);
-  overflow:hidden
-}
-
-.visual{
-  height:150px;
-  border-radius:17px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:58px;
-  background:linear-gradient(135deg,#ffdced,#d9ccff,#c9ebff);
-  overflow:hidden
-}
-
-.visual img{
-  width:100%;
-  height:100%;
-  object-fit:cover
-}
-
-.card h3{
-  font-size:17px;
-  margin:12px 0 5px
-}
-
-.tag{
-  display:inline-block;
-  font-size:11px;
-  padding:6px 9px;
-  border-radius:20px;
-  background:rgba(255,255,255,.55);
-  color:#775f7e
-}
-
-.actions{
-  display:flex;
-  gap:8px;
-  margin-top:12px
-}
-
-.actions button{
-  flex:1;
-  padding:9px;
-  border-radius:12px;
-  background:rgba(255,255,255,.55);
-  border:1px solid var(--line)
-}
-
-.dark .actions button{
-  background:rgba(255,255,255,.06);
-  color:var(--text)
-}
-
-.search{
-  display:flex;
-  gap:9px;
-  margin:15px 0
-}
-
-.search input{
-  flex:1;
-  padding:14px 16px;
-  border-radius:16px;
-  border:1px solid var(--line);
-  background:var(--card);
-  color:var(--text);
-  outline:none
-}
-
-.filters{
-  display:flex;
-  gap:8px;
-  overflow:auto;
-  padding-bottom:5px
-}
-
-.filter{
-  white-space:nowrap;
-  padding:9px 13px;
-  border-radius:20px;
-  background:var(--card);
-  border:1px solid var(--line)
-}
-
-.filter.active{
-  background:#292331;
-  color:white
-}
-
-.dark .filter.active{
-  background:#f5eaf8;
-  color:#241d29
-}
-
-.editor{
-  margin-top:15px;
-  padding:20px;
-  border-radius:24px;
-  background:var(--card);
-  border:1px solid var(--line);
-  box-shadow:var(--shadow)
-}
-
-.canvas{
-  min-height:350px;
-  border-radius:22px;
-  padding:25px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  background:linear-gradient(135deg,#ffd8e9,#d8c8ff,#c4e8fa);
-  overflow:hidden;
-  position:relative
-}
-
-.canvas .emoji{
-  font-size:75px;
-  position:relative;
-  z-index:2
-}
-
-.canvas .title{
-  font-size:30px;
-  font-weight:900;
-  margin-top:10px;
-  position:relative;
-  z-index:2
-}
-
-.canvas p{
-  position:relative;
-  z-index:2
-}
-
-.controls{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:14px
-}
-
-.photo-tools{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:10px
-}
-
-.photo-tools button,
-.upload-label{
-  padding:9px 12px;
-  border:0;
-  border-radius:14px;
-  background:rgba(255,255,255,.7);
-  cursor:pointer;
-  font-weight:700
-}
-
-.photo-tools button:hover,
-.upload-label:hover{
-  transform:translateY(-1px)
-}
-
-#photoInput{
-  display:none
-}
-
-.photo-preview{
-  width:100%;
-  max-height:300px;
-  object-fit:cover;
-  border-radius:20px;
-  display:none;
-  margin-bottom:12px
-}
-
-.filter-active{
-  outline:2px solid rgba(120,80,220,.45)
-}
-
-.controls input{
-  width:100%;
-  padding:12px;
-  border-radius:13px;
-  border:1px solid var(--line);
-  background:var(--bg);
-  color:var(--text)
-}
-
-.emojis{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-top:12px
-}
-
-.emojis button{
-  font-size:25px;
-  padding:7px;
-  border-radius:12px;
-  background:var(--bg);
-  border:1px solid var(--line)
-}
-
-.challenge{
-  margin-top:20px;
-  padding:18px;
-  border-radius:20px;
-  background:linear-gradient(135deg,#f6d7e8,#d9d0fa)
-}
-
-.empty{
-  text-align:center;
-  padding:40px 15px;
-  color:var(--muted)
-}
-
-.bottom{
-  position:fixed;
-  z-index:10;
-  bottom:12px;
-  left:50%;
-  transform:translateX(-50%);
-  width:min(680px,calc(100% - 22px));
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  padding:8px;
-  border-radius:22px;
-  background:rgba(255,255,255,.78);
-  backdrop-filter:blur(18px);
-  border:1px solid var(--line);
-  box-shadow:0 15px 40px rgba(60,40,80,.18)
-}
-
-.dark .bottom{
-  background:rgba(30,26,36,.88)
-}
-
-.nav{
-  padding:8px 3px;
-  border-radius:15px;
-  background:transparent;
-  color:var(--muted);
-  font-size:11px
-}
-
-.nav strong{
-  display:block;
-  font-size:19px;
-  margin-bottom:2px
-}
-
-.nav.active{
-  background:rgba(220,190,235,.35);
-  color:var(--text)
-}
-
-.toast{
-  position:fixed;
-  z-index:30;
-  left:50%;
-  bottom:88px;
-  transform:translateX(-50%);
-  padding:11px 16px;
-  border-radius:14px;
-  background:#292331;
-  color:#fff;
-  display:none;
-  box-shadow:var(--shadow)
-}
-
-@media(max-width:760px){
-  .grid{
-    grid-template-columns:repeat(2,1fr)
-  }
-
-  .visual{
-    height:130px
-  }
-}
-
-@media(max-width:480px){
-  .app{
-    padding:15px 12px 100px
-  }
-
-  .grid{
-    grid-template-columns:1fr 1fr;
-    gap:10px
-  }
-
-  .visual{
-    height:120px;
-    font-size:48px
-  }
-
-  .hero{
-    padding:22px
-  }
-
-  .card{
-    padding:10px
-  }
-
-  .card h3{
-    font-size:15px
-  }
-
-  .controls{
-    grid-template-columns:1fr
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moodi — Inspiration</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #faf8f7;
+      color: #222;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250,248,247,0.95);
+      backdrop-filter: blur(12px);
+      padding: 14px 18px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .top {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .search {
+      flex: 1;
+      position: relative;
+    }
+
+    .search input {
+      width: 100%;
+      padding: 13px 18px 13px 43px;
+      border: none;
+      outline: none;
+      border-radius: 30px;
+      background: #eeeae8;
+      font-size: 15px;
+    }
+
+    .search span {
+      position: absolute;
+      left: 16px;
+      top: 12px;
+      font-size: 18px;
+    }
+
+    .profile {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #222;
+      color: white;
+      font-weight: bold;
+    }
+
+    /* CATEGORIES */
+    .categories {
+      max-width: 1200px;
+      margin: 18px auto;
+      padding: 0 18px;
+      display: flex;
+      gap: 9px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .categories::-webkit-scrollbar {
+      display: none;
+    }
+
+    .category {
+      border: none;
+      background: white;
+      padding: 10px 17px;
+      border-radius: 25px;
+      white-space: nowrap;
+      cursor: pointer;
+      font-size: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+
+    .category.active {
+      background: #222;
+      color: white;
+    }
+
+    /* HERO */
+    .hero {
+      max-width: 1200px;
+      margin: 25px auto;
+      padding: 0 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(30px, 6vw, 55px);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: #777;
+      font-size: 16px;
+    }
+
+    /* PINTEREST GRID */
+    .feed {
+      max-width: 1200px;
+      margin: 25px auto;
+      padding: 0 18px;
+      columns: 5 180px;
+      column-gap: 15px;
+    }
+
+    .card {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      margin-bottom: 15px;
+      border-radius: 18px;
+      overflow: hidden;
+      background: white;
+      break-inside: avoid;
+      box-shadow: 0 3px 12px rgba(0,0,0,.07);
+    }
+
+    .card img {
+      width: 100%;
+      display: block;
+      transition: transform .3s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.03);
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,.05),
+        rgba(0,0,0,.65)
+      );
+      opacity: 0;
+      transition: .25s;
+    }
+
+    .card:hover .overlay {
+      opacity: 1;
+    }
+
+    .save {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      border: none;
+      background: #e60023;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      opacity: 0;
+      transition: .25s;
+      z-index: 2;
+    }
+
+    .card:hover .save {
+      opacity: 1;
+    }
+
+    .save.saved {
+      background: #222;
+    }
+
+    .info {
+      position: absolute;
+      bottom: 12px;
+      left: 14px;
+      right: 14px;
+      color: white;
+      opacity: 0;
+      transition: .25s;
+      z-index: 2;
+    }
+
+    .card:hover .info {
+      opacity: 1;
+    }
+
+    .info h3 {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .info span {
+      font-size: 12px;
+      opacity: .85;
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+
+      .top {
+        gap: 9px;
+      }
+
+      .logo {
+        font-size: 22px;
+      }
+
+      .profile {
+        width: 35px;
+        height: 35px;
+      }
+
+      .feed {
+        columns: 2;
+        column-gap: 9px;
+        padding: 0 10px;
+      }
+
+      .card {
+        margin-bottom: 9px;
+        border-radius: 13px;
+      }
+
+      .save {
+        opacity: 1;
+        padding: 7px 11px;
+        font-size: 12px;
+      }
+
+      .info {
+        opacity: 1;
+      }
+
+      .hero {
+        padding: 0 12px;
+      }
+
+      .categories {
+        padding: 0 12px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="app">
-
 <header>
-  <div class="logo">moodi<span> ✦</span></div>
-  <button class="iconbtn" onclick="toggleDark()" aria-label="Toggle dark mode">☾</button>
+  <div class="top">
+
+    <div class="logo">moodi.</div>
+
+    <div class="search">
+      <span>🔍</span>
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search inspiration..."
+      >
+    </div>
+
+    <div class="profile">M</div>
+
+  </div>
 </header>
 
-<!-- HOME -->
-<section id="home" class="page active">
 
-  <div class="hero">
-    <div class="kicker">Inspo • Create • Repeat</div>
+<!-- CATEGORIES -->
 
-    <h1>
-      Find your mood.<br>
-      Create your vibe.
-    </h1>
+<div class="categories">
 
-    <p>
-      Discover aesthetic ideas, save your favorites,
-      and turn inspiration into your own creations.
-    </p>
+  <button class="category active" data-category="all">
+    ✨ All
+  </button>
 
-    <button class="primary" onclick="showPage('explore')">
-      Explore inspo →
-    </button>
-  </div>
+  <button class="category" data-category="fashion">
+    👗 Fashion
+  </button>
 
-  <div class="section-head">
-    <h2>Trending inspo</h2>
-    <button class="filter" onclick="surprise()">
-      Surprise me ✨
-    </button>
-  </div>
+  <button class="category" data-category="hair">
+    💇 Hair
+  </button>
 
-  <div id="homeGrid" class="grid"></div>
+  <button class="category" data-category="beauty">
+    💄 Beauty
+  </button>
 
-  <div class="challenge">
-    <b>🔥 Daily Mood Challenge</b>
-    <p id="challengeText">
-      Create something inspired by today's mood.
-    </p>
+  <button class="category" data-category="room">
+    🏠 Room
+  </button>
 
-    <button class="primary" onclick="showPage('create')">
-      Try it
-    </button>
-  </div>
+  <button class="category" data-category="study">
+    📚 Study
+  </button>
 
-</section>
-
-
-<!-- EXPLORE -->
-<section id="explore" class="page">
-
-  <h1>Explore ✨</h1>
-
-  <p>
-    Find something that matches your mood.
-  </p>
-
-  <div class="search">
-    <input
-      id="search"
-      placeholder="Search inspo..."
-      oninput="renderExplore()"
-    >
-  </div>
-
-  <div id="filters" class="filters"></div>
-
-  <div id="exploreGrid" class="grid"></div>
-
-</section>
-
-
-<!-- CREATE -->
-<section id="create" class="page">
-
-  <h1>Create 🎨</h1>
-
-  <p>
-    Upload a photo, add your mood, and make it yours.
-  </p>
-
-  <div class="editor">
-
-    <div class="canvas" id="canvas">
-
-      <img
-        id="photoPreview"
-        class="photo-preview"
-        alt="Your uploaded photo"
-      >
-
-      <div class="emoji" id="previewEmoji">
-        🦋
-      </div>
-
-      <div class="title" id="previewTitle">
-        Dream Big
-      </div>
-
-      <p id="previewSub">
-        Find your vibe ✦
-      </p>
-
-    </div>
-
-
-    <label class="upload-label" for="photoInput">
-      📸 Upload photo
-    </label>
-
-    <input
-      id="photoInput"
-      type="file"
-      accept="image/*"
-      onchange="loadPhoto(event)"
-    >
-
-
-    <div class="photo-tools">
-
-      <button onclick="setFilter('none',this)">
-        Normal
-      </button>
-
-      <button onclick="setFilter('soft',this)">
-        Soft ✨
-      </button>
-
-      <button onclick="setFilter('mono',this)">
-        B&W
-      </button>
-
-      <button onclick="setFilter('warm',this)">
-        Warm ☀️
-      </button>
-
-      <button onclick="setFilter('cool',this)">
-        Cool 🌙
-      </button>
-
-    </div>
-
-
-    <div class="controls">
-
-      <input
-        id="titleInput"
-        value="Dream Big"
-        maxlength="35"
-        placeholder="Title"
-        oninput="updatePreview()"
-      >
-
-      <input
-        id="subInput"
-        value="Find your vibe ✦"
-        maxlength="45"
-        placeholder="Subtitle"
-        oninput="updatePreview()"
-      >
-
-    </div>
-
-
-    <div class="emojis">
-
-      <button onclick="setEmoji('🦋')">🦋</button>
-      <button onclick="setEmoji('🌸')">🌸</button>
-      <button onclick="setEmoji('🌙')">🌙</button>
-      <button onclick="setEmoji('✨')">✨</button>
-      <button onclick="setEmoji('🎀')">🎀</button>
-      <button onclick="setEmoji('☁️')">☁️</button>
-      <button onclick="setEmoji('🎧')">🎧</button>
-      <button onclick="setEmoji('🪩')">🪩</button>
-
-    </div>
-
-
-    <button class="primary" onclick="saveCreation()">
-      Save creation 💗
-    </button>
-
-    <button class="primary" onclick="downloadCreation()">
-      Download 📥
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- SAVED -->
-<section id="saved" class="page">
-
-  <h1>Saved 💗</h1>
-
-  <p>
-    Your favorite inspiration lives here.
-  </p>
-
-  <div id="savedGrid" class="grid"></div>
-
-</section>
-
-
-<!-- CREATIONS -->
-<section id="creations" class="page">
-
-  <h1>My Creations ✦</h1>
-
-  <p>
-    Everything you make stays on this device.
-  </p>
-
-  <div id="creationGrid" class="grid"></div>
-
-</section>
+  <button class="category" data-category="aesthetic">
+    🌷 Aesthetic
+  </button>
 
 </div>
 
 
-<!-- NAVIGATION -->
-<nav class="bottom">
+<!-- HERO -->
 
-  <button
-    class="nav active"
-    data-page="home"
-    onclick="showPage('home',this)"
-  >
-    <strong>⌂</strong>
-    Home
-  </button>
-
-  <button
-    class="nav"
-    data-page="explore"
-    onclick="showPage('explore',this)"
-  >
-    <strong>⌕</strong>
-    Explore
-  </button>
-
-  <button
-    class="nav"
-    data-page="create"
-    onclick="showPage('create',this)"
-  >
-    <strong>＋</strong>
-    Create
-  </button>
-
-  <button
-    class="nav"
-    data-page="saved"
-    onclick="showPage('saved',this)"
-  >
-    <strong>♡</strong>
-    Saved
-  </button>
-
-  <button
-    class="nav"
-    data-page="creations"
-    onclick="showPage('creations',this)"
-  >
-    <strong>✦</strong>
-    Creations
-  </button>
-
-</nav>
+<section class="hero">
+  <h1>Find your mood.</h1>
+  <p>Save the things that inspire you ✨</p>
+</section>
 
 
-<div id="toast" class="toast"></div>
+<!-- FEED -->
+
+<main class="feed" id="feed"></main>
 
 
 <script>
 
-const ideas = [
+const inspirations = [
 
-  ["Dreamy Pastel","Aesthetic","🌸"],
-  ["Pink Paradise","Aesthetic","🎀"],
-  ["Soft Girl Mood","Aesthetic","🩷"],
-  ["Cloudy Dreams","Aesthetic","☁️"],
-  ["Golden Hour","Aesthetic","🌅"],
+  {
+    title: "Soft Outfit",
+    category: "fashion",
+    image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=700&q=85"
+  },
 
-  ["Creative Sketch","Art","✏️"],
-  ["Color Palette","Art","🎨"],
-  ["Doodle World","Art","🖍️"],
-  ["Paint & Create","Art","🖌️"],
-  ["Abstract Vibes","Art","🪩"],
+  {
+    title: "Cozy Room",
+    category: "room",
+    image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=700&q=85"
+  },
 
-  ["Outfit Moodboard","Fashion","👗"],
-  ["Street Style","Fashion","🧢"],
-  ["Soft Outfit","Fashion","🧸"],
-  ["Casual Vibes","Fashion","👟"],
-  ["Fashion Week","Fashion","✨"],
+  {
+    title: "Natural Hair",
+    category: "hair",
+    image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=85"
+  },
 
-  ["Cozy Room","Room","🛋️"],
-  ["Pink Room","Room","🩷"],
-  ["Study Corner","Room","📚"],
-  ["Dream Bedroom","Room","🛏️"],
-  ["Minimal Space","Room","🪴"],
+  {
+    title: "Study Mood",
+    category: "study",
+    image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=700&q=85"
+  },
 
-  ["Minimal Website","Web","💻"],
-  ["Purple Web","Web","💜"],
-  ["Portfolio Inspo","Web","🖥️"],
-  ["Landing Page","Web","🚀"],
-  ["App Design","Web","📱"],
+  {
+    title: "Minimal Beauty",
+    category: "beauty",
+    image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=700&q=85"
+  },
 
-  ["Soft Photo Edit","Edit","📸"],
-  ["Night Edit","Edit","🌙"],
-  ["Vintage Edit","Edit","📼"],
-  ["Butterfly Edit","Edit","🦋"],
-  ["Dreamy Glow","Edit","✨"],
+  {
+    title: "Dreamy Aesthetic",
+    category: "aesthetic",
+    image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=700&q=85"
+  },
 
-  ["Music Mood","Music","🎧"],
-  ["Playlist Vibes","Music","🎶"],
-  ["Late Night Songs","Music","🌃"],
-  ["Main Character","Music","🎤"],
-  ["Chill Beats","Music","☁️"]
+  {
+    title: "Street Style",
+    category: "fashion",
+    image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=700&q=85"
+  },
+
+  {
+    title: "Clean Girl Hair",
+    category: "hair",
+    image: "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=700&q=85"
+  },
+
+  {
+    title: "Cute Desk",
+    category: "study",
+    image: "https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=700&q=85"
+  },
+
+  {
+    title: "Peaceful Corner",
+    category: "room",
+    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=700&q=85"
+  },
+
+  {
+    title: "Simple Makeup",
+    category: "beauty",
+    image: "https://images.unsplash.com/photo-1526045478516-99145907023c?auto=format&fit=crop&w=700&q=85"
+  },
+
+  {
+    title: "Pink Mood",
+    category: "aesthetic",
+    image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=700&q=85"
+  },
+
+  {
+    title: "Casual Look",
+    category: "fashion",
+    image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=700&q=85"
+  },
+
+  {
+    title: "Warm Bedroom",
+    category: "room",
+    image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=700&q=85"
+  },
+
+  {
+    title: "Morning Study",
+    category: "study",
+    image: "https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&fit=crop&w=700&q=85"
+  },
+
+  {
+    title: "Soft Flowers",
+    category: "aesthetic",
+    image: "https://images.unsplash.com/photo-1495231916356-a86217efff12?auto=format&fit=crop&w=700&q=85"
+  }
 
 ];
 
 
-const cats = [
-  "All",
-  "Aesthetic",
-  "Art",
-  "Fashion",
-  "Room",
-  "Web",
-  "Edit",
-  "Music"
-];
+const feed = document.getElementById("feed");
+const searchInput = document.getElementById("searchInput");
 
+let currentCategory = "all";
 
-let currentCat = "All";
 
-let saved =
-  JSON.parse(localStorage.getItem("moodiSaved") || "[]");
+/* LOAD SAVED ITEMS */
 
-let creations =
-  JSON.parse(localStorage.getItem("moodiCreations") || "[]");
+let savedItems =
+  JSON.parse(localStorage.getItem("moodiSaved")) || [];
 
-let selectedEmoji = "🦋";
 
-let photoData = "";
+/* DISPLAY FEED */
 
-let currentFilter = "none";
+function displayFeed() {
 
+  const search =
+    searchInput.value.toLowerCase().trim();
 
-function esc(s){
+  feed.innerHTML = "";
 
-  return String(s).replace(
-    /[&<>"']/g,
+  const filtered = inspirations.filter(item => {
 
-    function(m){
+    const matchesCategory =
+      currentCategory === "all" ||
+      item.category === currentCategory;
 
-      return {
-        "&":"&amp;",
-        "<":"&lt;",
-        ">":"&gt;",
-        '"':"&quot;",
-        "'":"&#039;"
-      }[m];
+    const matchesSearch =
+      item.title.toLowerCase().includes(search) ||
+      item.category.toLowerCase().includes(search);
 
-    }
-  );
+    return matchesCategory && matchesSearch;
 
-}
+  });
 
 
-function card(item,index){
+  if (filtered.length === 0) {
 
-  const title = item[0];
-  const cat = item[1];
-  const emoji = item[2];
-
-  const isSaved = saved.includes(index);
-
-  return `
-    <article class="card">
-
-      <div class="visual">
-        ${emoji}
-      </div>
-
-      <span class="tag">
-        ${cat}
-      </span>
-
-      <h3>
-        ${esc(title)}
-      </h3>
-
-      <p>
-        Fresh ${cat.toLowerCase()}
-        inspiration for your next vibe.
-      </p>
-
-      <div class="actions">
-
-        <button onclick="toggleSave(${index})">
-          ${isSaved ? "♥ Saved" : "♡ Save"}
-        </button>
-
-        <button onclick="remix(${index})">
-          ✦ Remix
-        </button>
-
-      </div>
-
-    </article>
-  `;
-
-}
-
-
-function renderHome(){
-
-  document.getElementById("homeGrid").innerHTML =
-    ideas
-      .slice(0,6)
-      .map((x,i)=>card(x,i))
-      .join("");
-
-}
-
-
-function renderFilters(){
-
-  document.getElementById("filters").innerHTML =
-    cats.map(c=>`
-
-      <button
-        class="filter ${c===currentCat?"active":""}"
-        onclick="setCat('${c}')"
-      >
-        ${c}
-      </button>
-
-    `).join("");
-
-}
-
-
-function renderExplore(){
-
-  const input =
-    document.getElementById("search");
-
-  const q =
-    (input.value || "").toLowerCase();
-
-  const list =
-    ideas
-      .map((x,i)=>({x,i}))
-      .filter(o=>
-
-        (
-          currentCat === "All" ||
-          o.x[1] === currentCat
-        )
-
-        &&
-
-        (
-          !q ||
-          o.x[0].toLowerCase().includes(q) ||
-          o.x[1].toLowerCase().includes(q)
-        )
-
-      );
-
-
-  document.getElementById("exploreGrid").innerHTML =
-
-    list.length
-
-      ? list.map(o=>card(o.x,o.i)).join("")
-
-      : `
-        <div class="empty">
-          No inspo found 💭
-          <br>
-          Try another search.
-        </div>
-      `;
-
-}
-
-
-function setCat(cat){
-
-  currentCat = cat;
-
-  renderFilters();
-
-  renderExplore();
-
-}
-
-
-function toggleSave(i){
-
-  if(saved.includes(i)){
-
-    saved =
-      saved.filter(x=>x!==i);
-
-  }else{
-
-    saved.push(i);
-
-  }
-
-
-  localStorage.setItem(
-    "moodiSaved",
-    JSON.stringify(saved)
-  );
-
-
-  renderHome();
-
-  renderExplore();
-
-  renderSaved();
-
-
-  toast(
-    saved.includes(i)
-      ? "Saved to your moodboard 💗"
-      : "Removed from saved"
-  );
-
-}
-
-
-function renderSaved(){
-
-  const list =
-    saved
-      .map(i=>({x:ideas[i],i}))
-      .filter(o=>o.x);
-
-
-  document.getElementById("savedGrid").innerHTML =
-
-    list.length
-
-      ? list.map(o=>card(o.x,o.i)).join("")
-
-      : `
-        <div class="empty">
-          Nothing saved yet 💗
-          <br>
-          Tap Save on an idea you love.
-        </div>
-      `;
-
-}
-
-
-function remix(i){
-
-  const x = ideas[i];
-
-  selectedEmoji = x[2];
-
-  document.getElementById("previewEmoji")
-    .textContent = x[2];
-
-  document.getElementById("titleInput")
-    .value = x[0];
-
-  document.getElementById("subInput")
-    .value = "Remixed on Moodi ✦";
-
-  updatePreview();
-
-  showPage("create");
-
-  toast("Ready to remix ✨");
-
-}
-
-
-function setEmoji(e){
-
-  selectedEmoji = e;
-
-  document.getElementById("previewEmoji")
-    .textContent = e;
-
-}
-
-
-function updatePreview(){
-
-  const title =
-    document.getElementById("titleInput").value;
-
-  const sub =
-    document.getElementById("subInput").value;
-
-
-  document.getElementById("previewTitle")
-    .textContent =
-    title || "Untitled";
-
-
-  document.getElementById("previewSub")
-    .textContent =
-    sub || "Your vibe ✦";
-
-}
-
-
-function loadPhoto(event){
-
-  const file =
-    event.target.files[0];
-
-  if(!file) return;
-
-
-  if(!file.type.startsWith("image/")){
-
-    toast("Please choose an image 📸");
-
-    return;
-
-  }
-
-
-  const reader =
-    new FileReader();
-
-
-  reader.onload = function(e){
-
-    photoData =
-      e.target.result;
-
-
-    const img =
-      document.getElementById("photoPreview");
-
-
-    img.src =
-      photoData;
-
-
-    img.style.display =
-      "block";
-
-
-    applyFilter();
-
-
-    toast("Photo added ✨");
-
-  };
-
-
-  reader.readAsDataURL(file);
-
-}
-
-
-function setFilter(filter,btn){
-
-  currentFilter =
-    filter;
-
-
-  document
-    .querySelectorAll(".photo-tools button")
-    .forEach(function(b){
-
-      b.classList.remove("filter-active");
-
-    });
-
-
-  if(btn){
-
-    btn.classList.add("filter-active");
-
-  }
-
-
-  applyFilter();
-
-}
-
-
-function applyFilter(){
-
-  const img =
-    document.getElementById("photoPreview");
-
-  if(!img) return;
-
-
-  const filters = {
-
-    none:
-      "none",
-
-    soft:
-      "brightness(1.08) saturate(.85) contrast(.95)",
-
-    mono:
-      "grayscale(1)",
-
-    warm:
-      "sepia(.18) saturate(1.3) contrast(1.03)",
-
-    cool:
-      "saturate(.85) hue-rotate(12deg) brightness(1.03)"
-
-  };
-
-
-  img.style.filter =
-    filters[currentFilter] || "none";
-
-}
-
-
-function saveCreation(){
-
-  const title =
-    document
-      .getElementById("titleInput")
-      .value
-      .trim()
-    || "Untitled";
-
-
-  const sub =
-    document
-      .getElementById("subInput")
-      .value
-      .trim()
-    || "My Mood ✦";
-
-
-  const creation = {
-
-    title:title,
-
-    sub:sub,
-
-    emoji:selectedEmoji,
-
-    photo:photoData,
-
-    filter:currentFilter,
-
-    date:new Date().toLocaleDateString()
-
-  };
-
-
-  creations.unshift(creation);
-
-
-  creations =
-    creations.slice(0,30);
-
-
-  try{
-
-    localStorage.setItem(
-      "moodiCreations",
-      JSON.stringify(creations)
-    );
-
-  }catch(error){
-
-    toast(
-      "Photo is too large to save on this device."
-    );
-
-    creations.shift();
-
-    return;
-
-  }
-
-
-  renderCreations();
-
-  showPage("creations");
-
-  toast("Creation saved ✦");
-
-}
-
-
-function renderCreations(){
-
-  const grid =
-    document.getElementById("creationGrid");
-
-
-  if(!creations.length){
-
-    grid.innerHTML = `
-      <div class="empty">
-        No creations yet ✨
-        <br>
-        Make your first mood card.
+    feed.innerHTML = `
+      <div style="
+        text-align:center;
+        padding:50px 10px;
+        color:#777;
+        column-span:all;
+      ">
+        <h2>No inspiration found 🥲</h2>
+        <p>Try another search.</p>
       </div>
     `;
 
     return;
-
   }
 
 
-  grid.innerHTML =
-    creations.map(function(c,i){
+  filtered.forEach((item, index) => {
 
-      let filter = "none";
+    const isSaved =
+      savedItems.includes(item.image);
 
+    const card = document.createElement("article");
 
-      if(c.filter === "mono")
-        filter = "grayscale(1)";
+    card.className = "card";
 
-      if(c.filter === "warm")
-        filter = "sepia(.18) saturate(1.3)";
+    card.innerHTML = `
 
-      if(c.filter === "cool")
-        filter = "saturate(.85) hue-rotate(12deg)";
+      <img
+        src="${item.image}"
+        alt="${item.title}"
+        loading="lazy"
+      >
 
-      if(c.filter === "soft")
-        filter = "brightness(1.08) saturate(.85)";
+      <div class="overlay"></div>
 
+      <button
+        class="save ${isSaved ? "saved" : ""}"
+        onclick="toggleSave('${item.image}', this)"
+      >
+        ${isSaved ? "✓ Saved" : "Save"}
+      </button>
 
-      return `
+      <div class="info">
+        <h3>${item.title}</h3>
+        <span>#${item.category}</span>
+      </div>
 
-        <article class="card">
+    `;
 
-          <div class="visual">
+    feed.appendChild(card);
 
-            ${
-              c.photo
-
-              ?
-
-              `
-                <img
-                  src="${c.photo}"
-                  style="
-                    width:100%;
-                    height:100%;
-                    object-fit:cover;
-                    filter:${filter}
-                  "
-                  alt="Moodi creation"
-                >
-              `
-
-              :
-
-              esc(c.emoji)
-
-            }
-
-          </div>
-
-          <h3>
-            ${esc(c.title)}
-          </h3>
-
-          <p>
-            ${esc(c.sub)}
-          </p>
-
-          <div class="actions">
-
-            <button
-              onclick="shareCreation(${i})"
-            >
-              ↗ Share
-            </button>
-
-            <button
-              onclick="deleteCreation(${i})"
-            >
-              Delete
-            </button>
-
-          </div>
-
-        </article>
-
-      `;
-
-    }).join("");
+  });
 
 }
 
 
-function deleteCreation(i){
+/* SAVE / UNSAVE */
 
-  if(!confirm("Delete this creation?"))
-    return;
+function toggleSave(image, button) {
 
+  if (savedItems.includes(image)) {
 
-  creations.splice(i,1);
+    savedItems =
+      savedItems.filter(item => item !== image);
 
+    button.classList.remove("saved");
+    button.textContent = "Save";
+
+  } else {
+
+    savedItems.push(image);
+
+    button.classList.add("saved");
+    button.textContent = "✓ Saved";
+
+  }
 
   localStorage.setItem(
-    "moodiCreations",
-    JSON.stringify(creations)
+    "moodiSaved",
+    JSON.stringify(savedItems)
   );
-
-
-  renderCreations();
-
-  toast("Deleted");
 
 }
 
 
-function downloadCreation(){
+/* CATEGORY BUTTONS */
 
-  const canvas =
-    document.createElement("canvas");
+document
+  .querySelectorAll(".category")
+  .forEach(button => {
 
+    button.addEventListener("click", () => {
 
-  canvas.width = 1080;
-
-  canvas.height = 1080;
-
-
-  const ctx =
-    canvas.getContext("2d");
-
-
-  const gradient =
-    ctx.createLinearGradient(
-      0,
-      0,
-      1080,
-      1080
-    );
-
-
-  gradient.addColorStop(
-    0,
-    "#ffd8ec"
-  );
-
-  gradient.addColorStop(
-    .5,
-    "#d9d4ff"
-  );
-
-  gradient.addColorStop(
-    1,
-    "#ccecff"
-  );
-
-
-  ctx.fillStyle =
-    gradient;
-
-  ctx.fillRect(
-    0,
-    0,
-    1080,
-    1080
-  );
-
-
-  function finish(){
-
-    ctx.fillStyle =
-      "rgba(255,255,255,.82)";
-
-
-    ctx.beginPath();
-
-    ctx.roundRect(
-      70,
-      70,
-      940,
-      940,
-      50
-    );
-
-    ctx.fill();
-
-
-    ctx.textAlign =
-      "center";
-
-
-    ctx.fillStyle =
-      "#3d3558";
-
-
-    ctx.font =
-      "90px sans-serif";
-
-
-    ctx.fillText(
-      selectedEmoji,
-      540,
-      280
-    );
-
-
-    const title =
       document
-        .getElementById("titleInput")
-        .value
-        .trim()
-      || "Untitled";
-
-
-    const sub =
-      document
-        .getElementById("subInput")
-        .value
-        .trim()
-      || "Your vibe ✦";
-
-
-    ctx.font =
-      "bold 68px Arial";
-
-
-    ctx.fillText(
-      title.slice(0,22),
-      540,
-      520
-    );
-
-
-    ctx.font =
-      "36px Arial";
-
-
-    ctx.fillText(
-      sub.slice(0,35),
-      540,
-      590
-    );
-
-
-    ctx.font =
-      "28px Arial";
-
-
-    ctx.fillText(
-      "Made with Moodi",
-      540,
-      930
-    );
-
-
-    try{
-
-      const link =
-        document.createElement("a");
-
-      link.download =
-        "moodi-creation.png";
-
-      link.href =
-        canvas.toDataURL("image/png");
-
-      document.body.appendChild(link);
-
-      link.click();
-
-      link.remove();
-
-      toast("Downloaded ✨");
-
-    }catch(error){
-
-      toast(
-        "Download failed. Try again."
-      );
-
-    }
-
-  }
-
-
-  if(photoData){
-
-    const img =
-      new Image();
-
-
-    img.onload = function(){
-
-      ctx.save();
-
-
-      let filter = "none";
-
-
-      if(currentFilter === "mono")
-        filter = "grayscale(1)";
-
-      if(currentFilter === "warm")
-        filter = "sepia(.18) saturate(1.3)";
-
-      if(currentFilter === "cool")
-        filter = "saturate(.85) hue-rotate(12deg)";
-
-      if(currentFilter === "soft")
-        filter = "brightness(1.08) saturate(.85)";
-
-
-      ctx.filter =
-        filter;
-
-
-      ctx.drawImage(
-        img,
-        90,
-        90,
-        900,
-        600
-      );
-
-
-      ctx.restore();
-
-
-      finish();
-
-    };
-
-
-    img.onerror =
-      function(){
-
-        toast(
-          "Could not load the photo."
+        .querySelectorAll(".category")
+        .forEach(btn =>
+          btn.classList.remove("active")
         );
 
-      };
+      button.classList.add("active");
 
+      currentCategory =
+        button.dataset.category;
 
-    img.src =
-      photoData;
-
-  }else{
-
-    finish();
-
-  }
-
-}
-
-
-async function shareCreation(i){
-
-  const c =
-    creations[i];
-
-
-  const text =
-    `${c.emoji} ${c.title}\n${c.sub}\nMade with Moodi`;
-
-
-  try{
-
-    if(navigator.share){
-
-      await navigator.share({
-
-        title:"My Moodi creation",
-
-        text:text
-
-      });
-
-
-      toast("Shared ✨");
-
-    }else{
-
-      await navigator.clipboard.writeText(text);
-
-      toast("Copied to clipboard ✨");
-
-    }
-
-  }catch(error){
-
-  }
-
-}
-
-
-function surprise(){
-
-  const i =
-    Math.floor(
-      Math.random() * ideas.length
-    );
-
-
-  remix(i);
-
-}
-
-
-function showPage(id,btn){
-
-  document
-    .querySelectorAll(".page")
-    .forEach(function(p){
-
-      p.classList.remove("active");
+      displayFeed();
 
     });
 
-
-  const page =
-    document.getElementById(id);
-
-
-  if(!page) return;
-
-
-  page.classList.add("active");
-
-
-  document
-    .querySelectorAll(".nav")
-    .forEach(function(n){
-
-      n.classList.remove("active");
-
-    });
-
-
-  const nav =
-    btn ||
-    document.querySelector(
-      `.nav[data-page="${id}"]`
-    );
-
-
-  if(nav)
-    nav.classList.add("active");
-
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
   });
 
 
-  if(id === "explore"){
+/* SEARCH */
 
-    renderFilters();
-
-    renderExplore();
-
-  }
-
-
-  if(id === "saved")
-    renderSaved();
+searchInput.addEventListener(
+  "input",
+  displayFeed
+);
 
 
-  if(id === "creations")
-    renderCreations();
+/* START */
 
-}
-
-
-function toggleDark(){
-
-  document.body.classList.toggle("dark");
-
-
-  localStorage.setItem(
-    "moodiDark",
-    document.body.classList.contains("dark")
-      ? "1"
-      : "0"
-  );
-
-}
-
-
-function toast(msg){
-
-  const t =
-    document.getElementById("toast");
-
-
-  t.textContent =
-    msg;
-
-
-  t.style.display =
-    "block";
-
-
-  clearTimeout(
-    window.toastTimer
-  );
-
-
-  window.toastTimer =
-    setTimeout(function(){
-
-      t.style.display =
-        "none";
-
-    },1800);
-
-}
-
-
-/* Load saved settings */
-
-if(
-  localStorage.getItem("moodiDark") === "1"
-){
-
-  document.body.classList.add("dark");
-
-}
-
-
-/* Start Moodi */
-
-renderHome();
-
-renderFilters();
-
-renderExplore();
-
-renderSaved();
-
-renderCreations();
+displayFeed();
 
 </script>
 
 </body>
-  </html>
+</html>
