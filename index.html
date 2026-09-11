@@ -1,533 +1,630 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Moodi — Inspiration</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<title>Moodi ✨</title>
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #faf8f7;
-      color: #222;
-    }
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-    /* HEADER */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(250,248,247,0.95);
-      backdrop-filter: blur(12px);
-      padding: 14px 18px;
-      border-bottom: 1px solid #eee;
-    }
+body{
+  font-family:Arial, sans-serif;
+  background:#faf7f5;
+  color:#292525;
+}
 
-    .top {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      max-width: 1200px;
-      margin: auto;
-    }
+/* HEADER */
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(250,247,245,.95);
+  backdrop-filter:blur(10px);
+  padding:14px 18px;
+  border-bottom:1px solid #eee;
+}
 
-    .logo {
-      font-size: 27px;
-      font-weight: 800;
-      letter-spacing: -1px;
-    }
+.top{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
 
-    .search {
-      flex: 1;
-      position: relative;
-    }
+.logo{
+  font-size:27px;
+  font-weight:800;
+  color:#e85d75;
+}
 
-    .search input {
-      width: 100%;
-      padding: 13px 18px 13px 43px;
-      border: none;
-      outline: none;
-      border-radius: 30px;
-      background: #eeeae8;
-      font-size: 15px;
-    }
+.search{
+  flex:1;
+  padding:12px 17px;
+  border:none;
+  outline:none;
+  border-radius:25px;
+  background:#eee9e7;
+  font-size:15px;
+}
 
-    .search span {
-      position: absolute;
-      left: 16px;
-      top: 12px;
-      font-size: 18px;
-    }
+/* CATEGORIES */
+.categories{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding-top:13px;
+}
 
-    .profile {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: #222;
-      color: white;
-      font-weight: bold;
-    }
+.categories::-webkit-scrollbar{
+  display:none;
+}
 
-    /* CATEGORIES */
-    .categories {
-      max-width: 1200px;
-      margin: 18px auto;
-      padding: 0 18px;
-      display: flex;
-      gap: 9px;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
+.category{
+  border:none;
+  padding:9px 15px;
+  border-radius:20px;
+  background:#eee9e7;
+  white-space:nowrap;
+  cursor:pointer;
+}
 
-    .categories::-webkit-scrollbar {
-      display: none;
-    }
+.category.active{
+  background:#292525;
+  color:white;
+}
 
-    .category {
-      border: none;
-      background: white;
-      padding: 10px 17px;
-      border-radius: 25px;
-      white-space: nowrap;
-      cursor: pointer;
-      font-size: 14px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.06);
-    }
+/* FEED */
+.feed{
+  columns:2;
+  column-gap:12px;
+  padding:15px;
+}
 
-    .category.active {
-      background: #222;
-      color: white;
-    }
+.card{
+  break-inside:avoid;
+  margin-bottom:12px;
+  background:white;
+  border-radius:17px;
+  overflow:hidden;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+  cursor:pointer;
+  transition:.2s;
+}
 
-    /* HERO */
-    .hero {
-      max-width: 1200px;
-      margin: 25px auto;
-      padding: 0 18px;
-    }
+.card:hover{
+  transform:translateY(-2px);
+}
 
-    .hero h1 {
-      font-size: clamp(30px, 6vw, 55px);
-      line-height: 1;
-      margin-bottom: 10px;
-    }
+.card img{
+  width:100%;
+  display:block;
+}
 
-    .hero p {
-      color: #777;
-      font-size: 16px;
-    }
+.card-info{
+  padding:10px;
+}
 
-    /* PINTEREST GRID */
-    .feed {
-      max-width: 1200px;
-      margin: 25px auto;
-      padding: 0 18px;
-      columns: 5 180px;
-      column-gap: 15px;
-    }
+.title{
+  font-weight:bold;
+  font-size:14px;
+  margin-bottom:5px;
+}
 
-    .card {
-      position: relative;
-      display: inline-block;
-      width: 100%;
-      margin-bottom: 15px;
-      border-radius: 18px;
-      overflow: hidden;
-      background: white;
-      break-inside: avoid;
-      box-shadow: 0 3px 12px rgba(0,0,0,.07);
-    }
+.creator{
+  font-size:12px;
+  color:#777;
+}
 
-    .card img {
-      width: 100%;
-      display: block;
-      transition: transform .3s ease;
-    }
+/* PROFILE */
+.profile{
+  display:none;
+  padding:20px;
+}
 
-    .card:hover img {
-      transform: scale(1.03);
-    }
+.back{
+  border:none;
+  background:#eee9e7;
+  padding:10px 15px;
+  border-radius:20px;
+  cursor:pointer;
+  margin-bottom:20px;
+}
 
-    .overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(0,0,0,.05),
-        rgba(0,0,0,.65)
-      );
-      opacity: 0;
-      transition: .25s;
-    }
+.profile-head{
+  text-align:center;
+  margin-bottom:25px;
+}
 
-    .card:hover .overlay {
-      opacity: 1;
-    }
+.avatar{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  object-fit:cover;
+  margin-bottom:10px;
+}
 
-    .save {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      border: none;
-      background: #e60023;
-      color: white;
-      padding: 10px 15px;
-      border-radius: 25px;
-      font-weight: bold;
-      cursor: pointer;
-      opacity: 0;
-      transition: .25s;
-      z-index: 2;
-    }
+.profile-name{
+  font-size:23px;
+  font-weight:bold;
+}
 
-    .card:hover .save {
-      opacity: 1;
-    }
+.profile-id{
+  color:#e85d75;
+  margin-top:4px;
+}
 
-    .save.saved {
-      background: #222;
-    }
+.bio{
+  color:#777;
+  margin-top:8px;
+}
 
-    .info {
-      position: absolute;
-      bottom: 12px;
-      left: 14px;
-      right: 14px;
-      color: white;
-      opacity: 0;
-      transition: .25s;
-      z-index: 2;
-    }
+/* PROFILE PICTURES */
+.gallery{
+  columns:2;
+  column-gap:12px;
+}
 
-    .card:hover .info {
-      opacity: 1;
-    }
+.gallery-card{
+  break-inside:avoid;
+  margin-bottom:12px;
+  border-radius:16px;
+  overflow:hidden;
+  background:white;
+}
 
-    .info h3 {
-      font-size: 16px;
-      margin-bottom: 4px;
-    }
+.gallery-card img{
+  width:100%;
+  display:block;
+}
 
-    .info span {
-      font-size: 12px;
-      opacity: .85;
-    }
+.gallery-title{
+  padding:10px;
+  font-size:14px;
+  font-weight:bold;
+}
 
-    /* MOBILE */
-    @media (max-width: 600px) {
+/* EMPTY */
+.empty{
+  text-align:center;
+  padding:50px 20px;
+  color:#888;
+}
 
-      .top {
-        gap: 9px;
-      }
+/* DESKTOP */
+@media(min-width:700px){
 
-      .logo {
-        font-size: 22px;
-      }
+  .feed{
+    columns:4;
+    max-width:1200px;
+    margin:auto;
+  }
 
-      .profile {
-        width: 35px;
-        height: 35px;
-      }
+  .gallery{
+    columns:4;
+    max-width:1200px;
+    margin:auto;
+  }
 
-      .feed {
-        columns: 2;
-        column-gap: 9px;
-        padding: 0 10px;
-      }
-
-      .card {
-        margin-bottom: 9px;
-        border-radius: 13px;
-      }
-
-      .save {
-        opacity: 1;
-        padding: 7px 11px;
-        font-size: 12px;
-      }
-
-      .info {
-        opacity: 1;
-      }
-
-      .hero {
-        padding: 0 12px;
-      }
-
-      .categories {
-        padding: 0 12px;
-      }
-    }
-  </style>
+  header{
+    padding-left:40px;
+    padding-right:40px;
+  }
+}
+</style>
 </head>
 
 <body>
 
 <header>
+
   <div class="top">
 
-    <div class="logo">moodi.</div>
-
-    <div class="search">
-      <span>🔍</span>
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="Search inspiration..."
-      >
+    <div class="logo">
+      Moodi ✨
     </div>
 
-    <div class="profile">M</div>
+    <input
+      class="search"
+      id="search"
+      placeholder="Search inspo..."
+    >
 
   </div>
+
+  <div class="categories">
+
+    <button class="category active" data-category="all">
+      All
+    </button>
+
+    <button class="category" data-category="fashion">
+      👗 Fashion
+    </button>
+
+    <button class="category" data-category="hair">
+      💇 Hair
+    </button>
+
+    <button class="category" data-category="beauty">
+      💄 Beauty
+    </button>
+
+    <button class="category" data-category="room">
+      🛋️ Room
+    </button>
+
+    <button class="category" data-category="study">
+      📚 Study
+    </button>
+
+    <button class="category" data-category="aesthetic">
+      ✨ Aesthetic
+    </button>
+
+  </div>
+
 </header>
 
 
-<!-- CATEGORIES -->
+<!-- HOME FEED -->
 
-<div class="categories">
+<main id="home">
 
-  <button class="category active" data-category="all">
-    ✨ All
+  <div class="feed" id="feed"></div>
+
+</main>
+
+
+<!-- CREATOR PROFILE -->
+
+<section class="profile" id="profile">
+
+  <button class="back" onclick="goHome()">
+    ← Back
   </button>
 
-  <button class="category" data-category="fashion">
-    👗 Fashion
-  </button>
+  <div class="profile-head">
 
-  <button class="category" data-category="hair">
-    💇 Hair
-  </button>
+    <img class="avatar" id="profileAvatar">
 
-  <button class="category" data-category="beauty">
-    💄 Beauty
-  </button>
+    <div class="profile-name" id="profileName"></div>
 
-  <button class="category" data-category="room">
-    🏠 Room
-  </button>
+    <div class="profile-id" id="profileId"></div>
 
-  <button class="category" data-category="study">
-    📚 Study
-  </button>
+    <div class="bio" id="profileBio"></div>
 
-  <button class="category" data-category="aesthetic">
-    🌷 Aesthetic
-  </button>
+  </div>
 
-</div>
+  <div class="gallery" id="gallery"></div>
 
-
-<!-- HERO -->
-
-<section class="hero">
-  <h1>Find your mood.</h1>
-  <p>Save the things that inspire you ✨</p>
 </section>
-
-
-<!-- FEED -->
-
-<main class="feed" id="feed"></main>
 
 
 <script>
 
-const inspirations = [
+/* =====================================================
+   MOODI CREATORS
+   ===================================================== */
+
+const creators = [
+
+  /* ---------- PERSON 1 ---------- */
 
   {
-    title: "Soft Outfit",
-    category: "fashion",
-    image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=700&q=85"
+    id:"moodgirl",
+
+    name:"Moodi Girl",
+
+    bio:"Soft fashion • Beauty • Aesthetic ✨",
+
+    avatar:
+    "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80",
+
+    pictures:[
+
+      {
+        title:"Soft outfit inspo",
+        category:"fashion",
+        image:
+        "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80"
+      },
+
+      {
+        title:"Cute aesthetic",
+        category:"aesthetic",
+        image:
+        "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=800&q=80"
+      },
+
+      {
+        title:"Beauty inspiration",
+        category:"beauty",
+        image:
+        "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80"
+      },
+
+      {
+        title:"Everyday look",
+        category:"fashion",
+        image:
+        "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=800&q=80"
+      }
+
+    ]
   },
 
-  {
-    title: "Cozy Room",
-    category: "room",
-    image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=700&q=85"
-  },
+
+  /* ---------- PERSON 2 ---------- */
 
   {
-    title: "Natural Hair",
-    category: "hair",
-    image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=85"
+    id:"cozyspace",
+
+    name:"Cozy Space",
+
+    bio:"Rooms • Desks • Cozy vibes 🕯️",
+
+    avatar:
+    "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80",
+
+    pictures:[
+
+      {
+        title:"Cozy bedroom",
+        category:"room",
+        image:
+        "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80"
+      },
+
+      {
+        title:"Study desk",
+        category:"study",
+        image:
+        "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=800&q=80"
+      },
+
+      {
+        title:"Warm room aesthetic",
+        category:"room",
+        image:
+        "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80"
+      },
+
+      {
+        title:"Cozy corner",
+        category:"aesthetic",
+        image:
+        "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80"
+      }
+
+    ]
   },
 
-  {
-    title: "Study Mood",
-    category: "study",
-    image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=700&q=85"
-  },
+
+  /* ---------- PERSON 3 ---------- */
 
   {
-    title: "Minimal Beauty",
-    category: "beauty",
-    image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=700&q=85"
+    id:"hairinspo",
+
+    name:"Hair Inspo",
+
+    bio:"Hair ideas • Hairstyles • Inspiration 💇",
+
+    avatar:
+    "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=300&q=80",
+
+    pictures:[
+
+      {
+        title:"Long hair inspo",
+        category:"hair",
+        image:
+        "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80"
+      },
+
+      {
+        title:"Soft hairstyle",
+        category:"hair",
+        image:
+        "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800&q=80"
+      },
+
+      {
+        title:"Simple hairstyle",
+        category:"hair",
+        image:
+        "https://images.unsplash.com/photo-1512316609839-ce289d3eba0a?auto=format&fit=crop&w=800&q=80"
+      },
+
+      {
+        title:"Hair aesthetic",
+        category:"aesthetic",
+        image:
+        "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=800&q=80"
+      }
+
+    ]
   },
 
-  {
-    title: "Dreamy Aesthetic",
-    category: "aesthetic",
-    image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=700&q=85"
-  },
+
+  /* ---------- PERSON 4 ---------- */
 
   {
-    title: "Street Style",
-    category: "fashion",
-    image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=700&q=85"
-  },
+    id:"studyvibes",
 
-  {
-    title: "Clean Girl Hair",
-    category: "hair",
-    image: "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=700&q=85"
-  },
+    name:"Study Vibes",
 
-  {
-    title: "Cute Desk",
-    category: "study",
-    image: "https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=700&q=85"
-  },
+    bio:"Study motivation • Notes • Productivity 📚",
 
-  {
-    title: "Peaceful Corner",
-    category: "room",
-    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=700&q=85"
-  },
+    avatar:
+    "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80",
 
-  {
-    title: "Simple Makeup",
-    category: "beauty",
-    image: "https://images.unsplash.com/photo-1526045478516-99145907023c?auto=format&fit=crop&w=700&q=85"
-  },
+    pictures:[
 
-  {
-    title: "Pink Mood",
-    category: "aesthetic",
-    image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=700&q=85"
-  },
+      {
+        title:"Study setup",
+        category:"study",
+        image:
+        "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80"
+      },
 
-  {
-    title: "Casual Look",
-    category: "fashion",
-    image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=700&q=85"
-  },
+      {
+        title:"Study notes",
+        category:"study",
+        image:
+        "https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&fit=crop&w=800&q=80"
+      },
 
-  {
-    title: "Warm Bedroom",
-    category: "room",
-    image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=700&q=85"
-  },
+      {
+        title:"Clean desk",
+        category:"study",
+        image:
+        "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=80"
+      },
 
-  {
-    title: "Morning Study",
-    category: "study",
-    image: "https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&fit=crop&w=700&q=85"
-  },
+      {
+        title:"Study aesthetic",
+        category:"aesthetic",
+        image:
+        "https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=800&q=80"
+      }
 
-  {
-    title: "Soft Flowers",
-    category: "aesthetic",
-    image: "https://images.unsplash.com/photo-1495231916356-a86217efff12?auto=format&fit=crop&w=700&q=85"
+    ]
   }
 
 ];
 
 
-const feed = document.getElementById("feed");
-const searchInput = document.getElementById("searchInput");
+/* =====================================================
+   CREATE ALL POSTS
+   ===================================================== */
 
-let currentCategory = "all";
+function getAllPosts(){
+
+  let posts = [];
+
+  creators.forEach(creator => {
+
+    creator.pictures.forEach((picture,index) => {
+
+      posts.push({
+
+        ...picture,
+
+        creatorId:creator.id,
+
+        creatorName:creator.name,
+
+        creatorAvatar:creator.avatar,
+
+        pictureIndex:index
+
+      });
+
+    });
+
+  });
+
+  return posts;
+}
 
 
-/* LOAD SAVED ITEMS */
+/* =====================================================
+   DISPLAY HOME FEED
+   ===================================================== */
 
-let savedItems =
-  JSON.parse(localStorage.getItem("moodiSaved")) || [];
+function displayFeed(){
 
-
-/* DISPLAY FEED */
-
-function displayFeed() {
+  const feed =
+  document.getElementById("feed");
 
   const search =
-    searchInput.value.toLowerCase().trim();
+  document.getElementById("search")
+  .value
+  .toLowerCase();
 
-  feed.innerHTML = "";
+  const activeCategory =
+  document.querySelector(".category.active")
+  .dataset.category;
 
-  const filtered = inspirations.filter(item => {
+  const posts = getAllPosts();
 
-    const matchesCategory =
-      currentCategory === "all" ||
-      item.category === currentCategory;
+  const filtered =
+  posts.filter(post => {
 
     const matchesSearch =
-      item.title.toLowerCase().includes(search) ||
-      item.category.toLowerCase().includes(search);
+      post.title.toLowerCase().includes(search) ||
+      post.creatorName.toLowerCase().includes(search) ||
+      post.creatorId.toLowerCase().includes(search) ||
+      post.category.toLowerCase().includes(search);
 
-    return matchesCategory && matchesSearch;
+    const matchesCategory =
+      activeCategory === "all" ||
+      post.category === activeCategory;
+
+    return matchesSearch && matchesCategory;
 
   });
 
 
-  if (filtered.length === 0) {
+  feed.innerHTML = "";
 
-    feed.innerHTML = `
-      <div style="
-        text-align:center;
-        padding:50px 10px;
-        color:#777;
-        column-span:all;
-      ">
-        <h2>No inspiration found 🥲</h2>
-        <p>Try another search.</p>
-      </div>
-    `;
+
+  if(filtered.length === 0){
+
+    feed.innerHTML =
+    `<div class="empty">
+      😭<br><br>
+      No inspo found
+    </div>`;
 
     return;
   }
 
 
-  filtered.forEach((item, index) => {
+  filtered.forEach(post => {
 
-    const isSaved =
-      savedItems.includes(item.image);
-
-    const card = document.createElement("article");
+    const card =
+    document.createElement("div");
 
     card.className = "card";
+
 
     card.innerHTML = `
 
       <img
-        src="${item.image}"
-        alt="${item.title}"
-        loading="lazy"
+        src="${post.image}"
+        alt="${post.title}"
       >
 
-      <div class="overlay"></div>
+      <div class="card-info">
 
-      <button
-        class="save ${isSaved ? "saved" : ""}"
-        onclick="toggleSave('${item.image}', this)"
-      >
-        ${isSaved ? "✓ Saved" : "Save"}
-      </button>
+        <div class="title">
+          ${post.title}
+        </div>
 
-      <div class="info">
-        <h3>${item.title}</h3>
-        <span>#${item.category}</span>
+        <div class="creator">
+          ${post.creatorName}
+          · @${post.creatorId}
+        </div>
+
       </div>
 
     `;
+
+
+    /*
+      CLICKING AN INSPO
+      OPENS THAT PERSON'S PROFILE
+    */
+
+    card.onclick = () =>
+      openCreator(post.creatorId);
+
 
     feed.appendChild(card);
 
@@ -536,70 +633,149 @@ function displayFeed() {
 }
 
 
-/* SAVE / UNSAVE */
+/* =====================================================
+   OPEN CREATOR
+   ===================================================== */
 
-function toggleSave(image, button) {
+function openCreator(id){
 
-  if (savedItems.includes(image)) {
+  const creator =
+    creators.find(c => c.id === id);
 
-    savedItems =
-      savedItems.filter(item => item !== image);
-
-    button.classList.remove("saved");
-    button.textContent = "Save";
-
-  } else {
-
-    savedItems.push(image);
-
-    button.classList.add("saved");
-    button.textContent = "✓ Saved";
-
-  }
-
-  localStorage.setItem(
-    "moodiSaved",
-    JSON.stringify(savedItems)
-  );
-
-}
+  if(!creator) return;
 
 
-/* CATEGORY BUTTONS */
+  document.getElementById("home")
+  .style.display = "none";
 
-document
-  .querySelectorAll(".category")
-  .forEach(button => {
 
-    button.addEventListener("click", () => {
+  document.querySelector("header")
+  .style.display = "none";
 
-      document
-        .querySelectorAll(".category")
-        .forEach(btn =>
-          btn.classList.remove("active")
-        );
 
-      button.classList.add("active");
+  const profile =
+    document.getElementById("profile");
 
-      currentCategory =
-        button.dataset.category;
+  profile.style.display = "block";
 
-      displayFeed();
 
-    });
+  document.getElementById("profileAvatar")
+  .src = creator.avatar;
+
+
+  document.getElementById("profileName")
+  .textContent = creator.name;
+
+
+  document.getElementById("profileId")
+  .textContent = "@" + creator.id;
+
+
+  document.getElementById("profileBio")
+  .textContent = creator.bio;
+
+
+  const gallery =
+    document.getElementById("gallery");
+
+  gallery.innerHTML = "";
+
+
+  creator.pictures.forEach(picture => {
+
+    const card =
+    document.createElement("div");
+
+    card.className =
+    "gallery-card";
+
+
+    card.innerHTML = `
+
+      <img
+        src="${picture.image}"
+        alt="${picture.title}"
+      >
+
+      <div class="gallery-title">
+        ${picture.title}
+      </div>
+
+    `;
+
+
+    gallery.appendChild(card);
 
   });
 
 
-/* SEARCH */
+  window.scrollTo(0,0);
 
-searchInput.addEventListener(
-  "input",
-  displayFeed
-);
+}
 
 
-/* START */
+/* =====================================================
+   GO HOME
+   ===================================================== */
+
+function goHome(){
+
+  document.getElementById("profile")
+  .style.display = "none";
+
+
+  document.getElementById("home")
+  .style.display = "block";
+
+
+  document.querySelector("header")
+  .style.display = "block";
+
+
+  window.scrollTo(0,0);
+
+}
+
+
+/* =====================================================
+   SEARCH
+   ===================================================== */
+
+document
+.getElementById("search")
+.addEventListener("input", displayFeed);
+
+
+/* =====================================================
+   CATEGORY BUTTONS
+   ===================================================== */
+
+document
+.querySelectorAll(".category")
+.forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    document
+    .querySelectorAll(".category")
+    .forEach(btn =>
+      btn.classList.remove("active")
+    );
+
+
+    button.classList.add("active");
+
+
+    displayFeed();
+
+  });
+
+});
+
+
+/* =====================================================
+   START MOODI
+   ===================================================== */
 
 displayFeed();
 
